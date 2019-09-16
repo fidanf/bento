@@ -106,26 +106,33 @@
       "vm_name": "{{ user `template` }}",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
-        "ethernet0.pciSlotNumber": "32",
-        "memsize": "{{ user `memory` }}",
-        "numvcpus": "{{ user `cpus` }}"
+        "ethernet0.pciSlotNumber": "32"
       },
+      "memory": "{{ user `memory` }}",
+      "cpus": "{{ user `cpus`}}",
       "vmx_remove_ethernet_interfaces": true
     }
   ],
   "post-processors": [
-    {
-      "output": "../../builds/{{user `box_basename`}}.{{.Provider}}.box",
-      "type": "vagrant"
-    }
+    [
+      {
+        "output": "../../builds/{{user `box_basename`}}.{{.Provider}}.box",
+        "type": "vagrant"
+      },
+      {
+        "type": "vagrant-cloud",
+        "box_tag": "rgsystems/bionic64",
+        "access_token": "{{ user `cloud_token` }}",
+        "version": "{{ user `version` }}",
+        "version_description": "{{ user `version_description` }}",
+        "only": ["virtualbox-iso"]
+      }
+    ]
   ],
   "provisioners": [
     {
       "environment_vars": [
-        "HOME_DIR=/home/vagrant",
-        "http_proxy={{user `http_proxy`}}",
-        "https_proxy={{user `https_proxy`}}",
-        "no_proxy={{user `no_proxy`}}"
+        "HOME_DIR=/home/vagrant"
       ],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
       "expect_disconnect": true,
@@ -138,8 +145,6 @@
         "scripts/vagrant.sh",
         "../_common/virtualbox.sh",
         "scripts/vmware.sh",
-        "../_common/parallels.sh",
-        "scripts/hyperv.sh",
         "scripts/cleanup.sh",
         "../_common/minimize.sh"
       ],
@@ -148,15 +153,9 @@
   ],
   "variables": {
     "box_basename": "ubuntu-18.04",
-    "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "2",
     "disk_size": "20000",
-    "git_revision": "__unknown_git_revision__",
     "headless": "",
-    "http_proxy": "{{env `http_proxy`}}",
-    "https_proxy": "{{env `https_proxy`}}",
-    "hyperv_generation": "2",
-    "hyperv_switch": "{{env `hyperv_switch`}}",
     "iso_checksum": "7d8e0055d663bffa27c1718685085626cb59346e7626ba3d3f476322271f573e",
     "iso_checksum_type": "sha256",
     "iso_name": "ubuntu-18.04.3-server-amd64.iso",
@@ -164,9 +163,10 @@
     "mirror": "http://cdimage.ubuntu.com",
     "mirror_directory": "ubuntu/releases/18.04.3/release",
     "name": "ubuntu-18.04",
-    "no_proxy": "{{env `no_proxy`}}",
     "preseed_path": "preseed.cfg",
     "template": "ubuntu-18.04-amd64",
-    "version": "TIMESTAMP"
+    "cloud_token": "{{ env `VAGRANTCLOUD_TOKEN` }}",
+    "version": "1.0.{{ timestamp }}",
+    "version_description": "Ubuntu 18.04.03 + VBoxGuestAdditions v6.0.10. Built with Packer and uploaded through vagrant-cloud's post-processor. Disk size 20GB."
   }
 }
