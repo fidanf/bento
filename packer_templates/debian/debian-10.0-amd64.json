@@ -139,7 +139,7 @@
     }
   ],
   "variables": {
-    "box_basename": "debian-10.0",
+    "box_basename": "debian-10.1",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "2",
     "disk_size": "20000",
@@ -148,7 +148,7 @@
     "https_proxy": "{{env `https_proxy`}}",
     "iso_checksum": "3dbb597b7f11dbda71cda08d4c1339c1eb565e784c75409987fa2b91182d9240",
     "iso_checksum_type": "sha256",
-    "iso_name": "debian-10.0.0-amd64-netinst.iso",
+    "iso_name": "debian-10.1.0-amd64-netinst.iso",
     "memory": "2048",
     "mirror": "http://cdimage.debian.org/cdimage/release",
     "mirror_directory": "10.1.0/amd64/iso-cd",
