@@ -92,7 +92,7 @@
       "vm_name": "{{ user `template` }}",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
-        "ethernet0.pciSlotNumber": "32",
+        "ethernet0.pciSlotNumber": "32"
       },
       "memory": "{{ user `memory` }}",
       "cpus": "{{ user `cpus`}}",
