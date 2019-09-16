@@ -157,6 +157,6 @@
     "preseed_path": "debian-9/preseed.cfg",
     "cloud_token": "{{ env `VAGRANTCLOUD_TOKEN` }}",
     "version": "1.0.{{ timestamp }}",
-    "version_description": "Ubuntu 18.04.03 + VBoxGuestAdditions v6.0.10. Built with Packer and uploaded through vagrant-cloud's post-processor. Disk size 20GB."
+    "version_description": "Debian 10.1.0 + VBoxGuestAdditions v6.0.10. Built with Packer and uploaded through vagrant-cloud's post-processor. Disk size 20GB."
   }
 }
