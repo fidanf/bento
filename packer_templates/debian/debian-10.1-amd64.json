@@ -129,6 +129,7 @@
         "scripts/networking.sh",
         "scripts/sudoers.sh",
         "../_common/vagrant.sh",
+        "scripts/ansible.sh",
         "scripts/systemd.sh",
         "../_common/virtualbox.sh",
         "../_common/vmware.sh",
@@ -151,7 +152,7 @@
     "mirror": "http://cdimage.debian.org/cdimage/release",
     "mirror_directory": "10.1.0/amd64/iso-cd",
     "name": "debian-10.1",
-    "preseed_path": "debian-9/preseed.cfg",
+    "preseed_path": "debian-10/preseed.cfg",
     "cloud_token": "{{ env `VAGRANTCLOUD_TOKEN` }}",
     "version": "1.0.{{ timestamp }}",
     "version_description": "Debian 10.1.0 + VBoxGuestAdditions v6.0.10. Built with Packer and uploaded through vagrant-cloud's post-processor. Disk size 20GB."
