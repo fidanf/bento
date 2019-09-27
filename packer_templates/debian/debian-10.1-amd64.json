@@ -63,7 +63,7 @@
         "debian-installer=en_US.UTF-8 <wait>",
         "auto <wait>",
         "locale=fr_FR.UTF-8 <wait>",
-        "kbd-chooser/method=us <wait>",
+        "kbd-chooser/method=fr <wait>",
         "keyboard-configuration/xkb-keymap=fr <wait>",
         "netcfg/get_hostname={{ .Name }} <wait>",
         "netcfg/get_domain=vagrantup.com <wait>",
