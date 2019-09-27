@@ -57,6 +57,7 @@
     {
       "type": "vmware-iso",
       "keep_registered": true,
+      "skip_export": true,
       "boot_command": [
         "<esc><wait>",
         "install <wait>",
@@ -92,11 +93,11 @@
       "tools_upload_flavor": "linux",
       "vm_name": "{{ user `template` }}",
       "vmx_data": {
-        "cpuid.coresPerSocket": "1",
         "ethernet0.pciSlotNumber": "32"
       },
       "memory": "{{ user `memory` }}",
       "cpus": "{{ user `cpus`}}",
+      "cores": "{{ user `cores`}}",
       "vmx_remove_ethernet_interfaces": true
     }
   ],
@@ -143,6 +144,7 @@
     "box_basename": "debian-10.1",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "2",
+    "cores": "1",
     "disk_size": "20480",
     "headless": "",
     "iso_checksum": "7915fdb77a0c2623b4481fc5f0a8052330defe1cde1e0834ff233818dc6f301e",
