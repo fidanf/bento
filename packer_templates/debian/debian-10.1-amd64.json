@@ -56,6 +56,7 @@
     },
     {
       "type": "vmware-iso",
+      "keep_registered": true,
       "boot_command": [
         "<esc><wait>",
         "install <wait>",
@@ -129,7 +130,6 @@
         "scripts/networking.sh",
         "scripts/sudoers.sh",
         "../_common/vagrant.sh",
-        "scripts/ansible.sh",
         "scripts/systemd.sh",
         "../_common/virtualbox.sh",
         "../_common/vmware.sh",
