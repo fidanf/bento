@@ -150,7 +150,7 @@
     "memory": "2048",
     "mirror": "http://cdimage.debian.org/cdimage/release",
     "mirror_directory": "10.1.0/amd64/iso-cd",
-    "name": "debian-10.0",
+    "name": "debian-10.1",
     "preseed_path": "debian-9/preseed.cfg",
     "cloud_token": "{{ env `VAGRANTCLOUD_TOKEN` }}",
     "version": "1.0.{{ timestamp }}",
