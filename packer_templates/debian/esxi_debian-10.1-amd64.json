@@ -21,6 +21,8 @@
         "netcfg/hostname={{ user `vm_name` }} <wait>",
         "netcfg/get_gateway={{ user `gateway` }} <wait>",
         "netcfg/get_nameservers={{ user `nameserver` }} <wait>",
+        "netcfg/get_hostname={{ user `vm_name` }} <wait>",
+        "netcfg/get_domain={{ user `domain` }} <wait>",
         "netcfg/confirm_static=true <wait>",
         "fb=false <wait>",
         "debconf/frontend=noninteractive <wait>",
@@ -29,7 +31,9 @@
         "grub-installer/bootdev=/dev/sda <wait>",
         "<enter><wait>"
       ],
-      "boot_wait": "10s",
+      "boot_wait": "5s",
+      "boot_key_interval": "20ms",
+      "boot_keygroup_interval": "20ms",
       "disk_size": "{{ user `disk_size` }}",
       "guest_os_type": "other-64",
       "http_directory": "http",
@@ -56,7 +60,8 @@
       "remote_host": "{{ user `esxi_host` }}",
       "remote_datastore": "{{ user `esxi_datastore` }}",
       "remote_username": "{{ user `esxi_username` }}",
-      "remote_password": "{{ user `esxi_password` }}"
+      "remote_password": "{{ user `esxi_password` }}",
+      "vnc_bind_address": "0.0.0.0"
     }
   ],
   "post-processors": [],
@@ -94,6 +99,7 @@
     "netmask": "255.255.255.0",
     "gateway": "192.168.1.1",
     "nameservers": "192.168.1.1",
+    "domain": "",
     "vm_name": "web03-beta",
     "iso_checksum": "7915fdb77a0c2623b4481fc5f0a8052330defe1cde1e0834ff233818dc6f301e",
     "iso_checksum_type": "sha256",
@@ -102,7 +108,7 @@
     "mirror": "http://cdimage.debian.org/cdimage/release",
     "mirror_directory": "10.1.0/amd64/iso-cd",
     "name": "debian-10.1",
-    "preseed_path": "debian-10/static-ip-preseed.cfg",
+    "preseed_path": "debian-10/preseed.cfg",
     "cloud_token": "{{ env `VAGRANTCLOUD_TOKEN` }}"
   }
 }
