@@ -12,7 +12,7 @@
       "boot_command": [
         "<esc><wait>",
         "install <wait>",
-        " preseed/url=https://gist.githubusercontent.com/fidanf/b84097314ffe6d627fef3083801199c0/raw/dca8661314b4518dde24133aa3a3e9cfd0feac7b/preseed.cfg <wait>",
+        " preseed/url=https://gist.githubusercontent.com/fidanf/b84097314ffe6d627fef3083801199c0/raw/6d21e04a96f5ec24cb97bc5e1923015db5409ab3/preseed.cfg <wait>",
         "debian-installer=en_US.UTF-8 <wait>",
         "auto <wait>",
         "locale=en_US.UTF-8 <wait>",
@@ -82,7 +82,6 @@
         "scripts/sudoers.sh",
         "scripts/ansible.sh",
         "scripts/systemd.sh",
-        "../_common/vmware.sh",
         "scripts/cleanup.sh",
         "../_common/minimize.sh"
       ],
@@ -93,9 +92,9 @@
     "ansible_pubkey_src": "ssh/ansible_id_rsa_pub",
     "ansible_pubkey_dest": "tmp/ansible_id_rsa_pub",
     "box_basename": "debian-10.1",
-    "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "2",
     "cores": "1",
+    "memory": "1024",
     "disk_size": "20480",
     "network": "NAT Network",
     "ip_address": "192.168.1.12",
@@ -107,11 +106,8 @@
     "iso_checksum": "7915fdb77a0c2623b4481fc5f0a8052330defe1cde1e0834ff233818dc6f301e",
     "iso_checksum_type": "sha256",
     "iso_name": "debian-10.1.0-amd64-netinst.iso",
-    "memory": "1024",
     "mirror": "http://cdimage.debian.org/cdimage/release",
     "mirror_directory": "10.1.0/amd64/iso-cd",
-    "name": "debian-10.1",
-    "preseed_path": "debian-10/esxi-preseed.cfg",
-    "cloud_token": "{{ env `VAGRANTCLOUD_TOKEN` }}"
+    "preseed_path": "debian-10/esxi-preseed.cfg"
   }
 }
