@@ -1,6 +1,7 @@
 #!/bin/bash -eux
 
 dos2unix /tmp/ansible_id_rsa_pub
+
 ANSIBLE_PUBKEY_CONTENT=$(cat /tmp/ansible_id_rsa_pub)
 HOME=/home/ansible
 
