@@ -121,8 +121,8 @@
   "provisioners": [
     {
       "type": "file",
-      "source": "{{ user `ansible_pubkey_path` }}",
-      "destination": "/tmp/ansible_id_rsa_pub"
+      "source": "{{ user `ansible_pubkey_src` }}",
+      "destination": "{{ user `ansible_pubkey_dest` }}"
     },
     {
       "environment_vars": [
@@ -148,7 +148,8 @@
     }
   ],
   "variables": {
-    "ansible_pubkey_path": "ssh/ansible_id_rsa_pub",
+    "ansible_pubkey_src": "ssh/ansible_id_rsa_pub",
+    "ansible_pubkey_dest": "tmp/ansible_id_rsa_pub",
     "box_basename": "debian-10.1",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "2",
