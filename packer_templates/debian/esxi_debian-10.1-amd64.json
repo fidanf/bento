@@ -3,7 +3,7 @@
     {
       "type": "vmware-iso",
       "boot_wait": "5s",
-      "boot_key_interval": "20ms",
+      "boot_key_interval": "10ms",
       "boot_keygroup_interval": "10ms",
       "iso_checksum": "{{ user `iso_checksum` }}",
       "iso_checksum_type": "{{ user `iso_checksum_type` }}",
@@ -36,7 +36,6 @@
         "grub-installer/bootdev=/dev/sda <wait>",
         "<enter><wait>"
       ],
-
       "disk_size": "{{ user `disk_size` }}",
       "guest_os_type": "other-64",
       "keep_registered": true,
@@ -50,13 +49,16 @@
       "memory": "{{ user `memory` }}",
       "cpus": "{{ user `cpus` }}",
       "cores": "{{ user `cores` }}",
-      "network": "{{ user `network` }}",
       "remote_type": "esx5",
       "remote_host": "{{ user `esxi_host` }}",
       "remote_datastore": "{{ user `esxi_datastore` }}",
       "remote_username": "{{ user `esxi_username` }}",
       "remote_password": "{{ user `esxi_password` }}",
-      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/shutdown -hP now"
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/shutdown -hP now",
+      "vmx_data": {
+        "ethernet0.pciSlotNumber": "32",
+        "ethernet0.networkName": "{{ user `network` }}"
+      }
     }
   ],
   "post-processors": [],
@@ -74,6 +76,7 @@
         "scripts/networking.sh",
         "scripts/sudoers.sh",
         "../_common/vagrant.sh",
+        "scripts/ansible.sh",
         "scripts/systemd.sh",
         "../_common/virtualbox.sh",
         "../_common/vmware.sh",
@@ -93,8 +96,8 @@
     "ip_address": "192.168.1.12",
     "netmask": "255.255.255.0",
     "gateway": "192.168.1.1",
-    "nameservers": "192.168.1.1",
-    "domain": "",
+    "nameservers": "192.168.1.1,192.168.1.200",
+    "domain": "beta-supervision.com",
     "vm_name": "web03-beta",
     "iso_checksum": "7915fdb77a0c2623b4481fc5f0a8052330defe1cde1e0834ff233818dc6f301e",
     "iso_checksum_type": "sha256",
@@ -103,7 +106,7 @@
     "mirror": "http://cdimage.debian.org/cdimage/release",
     "mirror_directory": "10.1.0/amd64/iso-cd",
     "name": "debian-10.1",
-    "preseed_path": "debian-10/static-ip-preseed.cfg",
+    "preseed_path": "debian-10/esxi-preseed.cfg",
     "cloud_token": "{{ env `VAGRANTCLOUD_TOKEN` }}"
   }
 }
