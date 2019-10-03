@@ -1,15 +1,15 @@
 #!/bin/bash -eux
 
 dos2unix /tmp/ansible_id_rsa_pub
-
-HOME=/home/ansible
 ANSIBLE_PUBKEY_CONTENT=$(cat /tmp/ansible_id_rsa_pub)
+HOME=/home/ansible
 
-# create ansible user
-useradd -p $(openssl passwd -1 ansible) --create-home -s /bin/bash ansible
-
-# add ansible user to ansible group
-usermod -a -G ansible ansible
+if [ $(id -u ansible) -eq 1 ] ; then
+    # create ansible user
+    useradd -p $(openssl passwd -1 ansible) --create-home -s /bin/bash ansible
+    # add ansible user to ansible group
+    usermod -a -G ansible ansible
+fi
 
 # add it to sudoers
 echo "
