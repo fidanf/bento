@@ -75,12 +75,12 @@
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
       "expect_disconnect": true,
       "scripts": [
+        "scripts/ansible.sh",
         "scripts/update.sh",
         "../_common/motd.sh",
         "../_common/sshd.sh",
         "scripts/networking.sh",
         "scripts/sudoers.sh",
-        "scripts/ansible.sh",
         "scripts/systemd.sh",
         "scripts/cleanup.sh",
         "../_common/minimize.sh"
@@ -90,7 +90,7 @@
   ],
   "variables": {
     "ansible_pubkey_src": "ssh/ansible_id_rsa_pub",
-    "ansible_pubkey_dest": "tmp/ansible_id_rsa_pub",
+    "ansible_pubkey_dest": "/tmp/ansible_id_rsa_pub",
     "box_basename": "debian-10.1",
     "cpus": "2",
     "cores": "1",
