@@ -5,7 +5,7 @@ dos2unix /tmp/ansible_id_rsa_pub
 ANSIBLE_PUBKEY_CONTENT=$(cat /tmp/ansible_id_rsa_pub)
 HOME=/home/ansible
 
-if [ $(id -u ansible) -eq 1 ] ; then
+if [ ! $(id -u ansible) ]; then
     # create ansible user
     useradd -p $(openssl passwd -1 ansible) --create-home -s /bin/bash ansible
     # add ansible user to ansible group
