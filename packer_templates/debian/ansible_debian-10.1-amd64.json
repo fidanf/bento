@@ -150,22 +150,22 @@
   "variables": {
     "ansible_pubkey_src": "ssh/ansible_id_rsa_pub",
     "ansible_pubkey_dest": "/tmp/ansible_id_rsa_pub",
-    "box_basename": "debian-10.1",
+    "box_basename": "debian-10.2",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "2",
     "cores": "1",
+    "memory": "2048",
     "disk_size": "20480",
     "headless": "",
-    "iso_checksum": "7915fdb77a0c2623b4481fc5f0a8052330defe1cde1e0834ff233818dc6f301e",
+    "iso_checksum": "e43fef979352df15056ac512ad96a07b515cb8789bf0bfd86f99ed0404f885f5",
     "iso_checksum_type": "sha256",
-    "iso_name": "debian-10.1.0-amd64-netinst.iso",
-    "memory": "2048",
+    "iso_name": "debian-10.2.0-amd64-netinst.iso",
     "mirror": "http://cdimage.debian.org/cdimage/release",
-    "mirror_directory": "10.1.0/amd64/iso-cd",
-    "name": "debian-10.1",
+    "mirror_directory": "10.2.0/amd64/iso-cd",
+    "name": "debian-10.2",
     "preseed_path": "debian-10/preseed.cfg",
     "cloud_token": "{{ env `VAGRANTCLOUD_TOKEN` }}",
     "version": "1.0.{{ timestamp }}",
-    "version_description": "Debian 10.1.0 + VBoxGuestAdditions v6.0.10. Built with Packer and uploaded through vagrant-cloud's post-processor. Disk size 20GB."
+    "version_description": "Debian 10.2.0 + VBoxGuestAdditions v6.0.10. Built with Packer and uploaded through vagrant-cloud's post-processor. Disk size 20GB."
   }
 }
