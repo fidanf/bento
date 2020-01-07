@@ -1,2 +1,3 @@
-*_id_rsa
-*_pub
+*rsa
+*.pub
+*.key

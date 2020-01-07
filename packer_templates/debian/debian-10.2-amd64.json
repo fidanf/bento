@@ -145,7 +145,7 @@
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "2",
     "cores": "1",
-    "disk_size": "20480",
+    "disk_size": "40960",
     "headless": "",
     "iso_checksum": "e43fef979352df15056ac512ad96a07b515cb8789bf0bfd86f99ed0404f885f5",
     "iso_checksum_type": "sha256",

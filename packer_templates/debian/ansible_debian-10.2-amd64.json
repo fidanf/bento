@@ -52,7 +52,7 @@
         ]
       ],
       "virtualbox_version_file": ".vbox_version",
-      "vm_name": "{{ user `template` }}"
+      "vm_name": "{{ user `name` }}"
     },
     {
       "type": "vmware-iso",
@@ -91,7 +91,7 @@
       "ssh_username": "vagrant",
       "ssh_wait_timeout": "10000s",
       "tools_upload_flavor": "linux",
-      "vm_name": "{{ user `template` }}",
+      "vm_name": "{{ user `name` }}",
       "vmx_data": {
         "ethernet0.pciSlotNumber": "32"
       },
@@ -148,14 +148,14 @@
     }
   ],
   "variables": {
-    "ansible_pubkey_src": "ssh/ansible_id_rsa_pub",
+    "ansible_pubkey_src": "ssh/id_rsa.pub",
     "ansible_pubkey_dest": "/tmp/ansible_id_rsa_pub",
     "box_basename": "debian-10.2",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "2",
     "cores": "1",
     "memory": "2048",
-    "disk_size": "20480",
+    "disk_size": "40960",
     "headless": "",
     "iso_checksum": "e43fef979352df15056ac512ad96a07b515cb8789bf0bfd86f99ed0404f885f5",
     "iso_checksum_type": "sha256",
