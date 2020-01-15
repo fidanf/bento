@@ -1,8 +1,8 @@
 #!/bin/bash -eux
 
-dos2unix /tmp/ansible_id_rsa_pub
+dos2unix /tmp/id_rsa.pub
 
-ANSIBLE_PUBKEY_CONTENT=$(cat /tmp/ansible_id_rsa_pub)
+ANSIBLE_PUBKEY_CONTENT=$(cat /tmp/id_rsa.pub)
 HOME=/home/ansible
 
 if [ ! $(id -u ansible) ]; then

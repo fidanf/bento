@@ -105,16 +105,14 @@
   [
     {
       "output": "../../builds/{{user `box_basename`}}.{{.Provider}}.box",
-      "type": "vagrant",
-      "only": ["virtualbox-iso"]
+      "type": "vagrant"
     },
     {
       "type": "vagrant-cloud",
       "box_tag": "rgsystems/buster64",
       "access_token": "{{ user `cloud_token` }}",
       "version": "{{ user `version` }}",
-      "version_description": "{{ user `version_description` }}",
-      "only": ["virtualbox-iso"]
+      "version_description": "{{ user `version_description` }}"
     }
   ]
 ],
@@ -122,7 +120,7 @@
     {
       "type": "file",
       "source": "{{ user `ansible_pubkey_src` }}",
-      "destination": "{{ user `ansible_pubkey_dest` }}"
+      "destination": "/tmp/id_rsa.pub"
     },
     {
       "environment_vars": [
@@ -148,8 +146,7 @@
     }
   ],
   "variables": {
-    "ansible_pubkey_src": "ssh/id_rsa.pub",
-    "ansible_pubkey_dest": "/tmp/ansible_id_rsa_pub",
+    "ansible_pubkey_src": "ssh/ansible_beta.pub",
     "box_basename": "debian-10.2",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "2",
@@ -166,6 +163,6 @@
     "preseed_path": "debian-10/preseed.cfg",
     "cloud_token": "{{ env `VAGRANTCLOUD_TOKEN` }}",
     "version": "1.0.{{ timestamp }}",
-    "version_description": "Debian 10.2.0 + VBoxGuestAdditions v6.0.10. Built with Packer and uploaded through vagrant-cloud's post-processor. Disk size 20GB."
+    "version_description": "Debian 10.2.0. Built with Packer and uploaded through vagrant-cloud's post-processor. Disk size 20GB."
   }
 }
