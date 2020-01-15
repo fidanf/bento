@@ -163,6 +163,6 @@
     "preseed_path": "debian-10/preseed.cfg",
     "cloud_token": "{{ env `VAGRANTCLOUD_TOKEN` }}",
     "version": "1.0.{{ timestamp }}",
-    "version_description": "Debian 10.2.0. Built with Packer and uploaded through vagrant-cloud's post-processor. Disk size 20GB."
+    "version_description": "Debian 10.2.0. Built with Packer and uploaded through vagrant-cloud's post-processor. Disk size 40GB."
   }
 }
