@@ -31,9 +31,10 @@
       "boot_wait": "5s",
       "disk_size": "{{user `disk_size`}}",
       "guest_additions_mode": "attach",
+      "guest_additions_url": "{{ user `guest_additions_url` }}",
       "guest_os_type": "Solaris11_64",
       "headless": "{{ user `headless` }}",
-      "http_directory": "http",
+      "http_directory": "{{user `http_directory`}}",
       "iso_checksum": "30d9ae857f62938c21307722d031e0dc",
       "iso_checksum_type": "md5",
       "iso_url": "{{user `mirror`}}/sol-11_3-ai-x86.iso",
@@ -45,20 +46,8 @@
       "ssh_username": "vagrant",
       "ssh_wait_timeout": "10000s",
       "type": "virtualbox-iso",
-      "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "{{ user `memory` }}"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "{{ user `cpus` }}"
-        ]
-      ],
+      "memory": "{{ user `memory` }}",
+      "cpus": "{{ user `cpus` }}",
       "virtualbox_version_file": ".vbox_version",
       "vm_name": "{{ user `template` }}"
     },
@@ -94,7 +83,7 @@
       "disk_size": "{{user `disk_size`}}",
       "guest_os_type": "solaris11-64",
       "headless": "{{ user `headless` }}",
-      "http_directory": "http",
+      "http_directory": "{{user `http_directory`}}",
       "iso_checksum": "30d9ae857f62938c21307722d031e0dc",
       "iso_checksum_type": "md5",
       "iso_url": "{{user `mirror`}}/sol-11_3-ai-x86.iso",
@@ -107,17 +96,17 @@
       "ssh_wait_timeout": "10000s",
       "type": "vmware-iso",
       "vm_name": "{{ user `template` }}",
+      "memory": "{{ user `memory` }}",
+      "cpus": "{{ user `cpus` }}",
       "vmx_data": {
-        "cpuid.coresPerSocket": "1",
-        "memsize": "{{ user `memory` }}",
-        "numvcpus": "{{ user `cpus` }}"
+        "cpuid.coresPerSocket": "1"
       },
       "vmx_remove_ethernet_interfaces": true
     }
   ],
   "post-processors": [
     {
-      "output": "../../builds/{{user `box_basename`}}.{{.Provider}}.box",
+      "output": "{{ user `build_directory` }}/{{user `box_basename`}}.{{.Provider}}.box",
       "type": "vagrant"
     }
   ],
@@ -127,10 +116,10 @@
       "execute_command": "echo 'vagrant'|sudo -S bash {{.Path}}",
       "expect_disconnect": true,
       "scripts": [
-        "scripts/update.sh",
-        "scripts/vagrant.sh",
-        "scripts/vmtools.sh",
-        "scripts/minimize.sh"
+        "{{template_dir}}/scripts/update.sh",
+        "{{template_dir}}/scripts/vagrant.sh",
+        "{{template_dir}}/scripts/vmtools.sh",
+        "{{template_dir}}/scripts/minimize.sh"
       ],
       "type": "shell"
     }
@@ -140,7 +129,10 @@
     "_README": "You must download the automated installer iso from the following page, and then place it in the packer_cache dir",
     "arch": "64",
     "box_basename": "solaris-11.3",
+    "build_directory": "../../builds",
+    "http_directory": "{{template_dir}}/http",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
+    "guest_additions_url": "",
     "cpus": "1",
     "disk_size": "65536",
     "git_revision": "__unknown_git_revision__",
