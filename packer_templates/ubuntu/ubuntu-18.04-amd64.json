@@ -1,7 +1,6 @@
 {
   "builders": [
     {
-      "type": "virtualbox-iso",
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -9,15 +8,16 @@
         "/install/vmlinuz<wait>",
         " auto<wait>",
         " console-setup/ask_detect=false<wait>",
-        " console-setup/layoutcode=fr<wait>",
+        " console-setup/layoutcode=us<wait>",
+        " console-setup/modelcode=pc105<wait>",
         " debconf/frontend=noninteractive<wait>",
         " debian-installer=en_US.UTF-8<wait>",
         " fb=false<wait>",
         " initrd=/install/initrd.gz<wait>",
-        " kbd-chooser/method=fr<wait>",
-        " keyboard-configuration/layout=FR<wait>",
-        " keyboard-configuration/variant=FR<wait>",
-        " locale=fr_FR.UTF-8<wait>",
+        " kbd-chooser/method=us<wait>",
+        " keyboard-configuration/layout=USA<wait>",
+        " keyboard-configuration/variant=USA<wait>",
+        " locale=en_US.UTF-8<wait>",
         " netcfg/get_domain=vm<wait>",
         " netcfg/get_hostname=vagrant<wait>",
         " grub-installer/bootdev=/dev/sda<wait>",
@@ -39,30 +39,17 @@
       "iso_url": "{{user `mirror`}}/{{user `mirror_directory`}}/{{user `iso_name`}}",
       "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-virtualbox",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "post_shutdown_delay": "30s",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_username": "vagrant",
       "ssh_wait_timeout": "10000s",
-      "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "{{ user `memory` }}"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "{{ user `cpus` }}"
-        ]
-      ],
+      "type": "virtualbox-iso",
+      "memory": "{{ user `memory` }}",
+      "cpus": "{{ user `cpus` }}",
       "virtualbox_version_file": ".vbox_version",
       "vm_name": "{{ user `template` }}"
     },
     {
-      "type": "vmware-iso",
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -70,15 +57,16 @@
         "/install/vmlinuz<wait>",
         " auto<wait>",
         " console-setup/ask_detect=false<wait>",
-        " console-setup/layoutcode=fr<wait>",
+        " console-setup/layoutcode=us<wait>",
+        " console-setup/modelcode=pc105<wait>",
         " debconf/frontend=noninteractive<wait>",
         " debian-installer=en_US.UTF-8<wait>",
         " fb=false<wait>",
         " initrd=/install/initrd.gz<wait>",
-        " kbd-chooser/method=fr<wait>",
-        " keyboard-configuration/layout=FR<wait>",
-        " keyboard-configuration/variant=FR<wait>",
-        " locale=fr_FR.UTF-8<wait>",
+        " kbd-chooser/method=us<wait>",
+        " keyboard-configuration/layout=USA<wait>",
+        " keyboard-configuration/variant=USA<wait>",
+        " locale=en_US.UTF-8<wait>",
         " netcfg/get_domain=vm<wait>",
         " netcfg/get_hostname=vagrant<wait>",
         " grub-installer/bootdev=/dev/sda<wait>",
@@ -102,16 +90,50 @@
       "ssh_username": "vagrant",
       "ssh_wait_timeout": "10000s",
       "tools_upload_flavor": "linux",
+      "type": "vmware-iso",
       "vm_name": "{{ user `template` }}",
       "memory": "{{ user `memory` }}",
       "cpus": "{{ user `cpus` }}",
       "vmx_data": {
+        "cpuid.coresPerSocket": "1",
         "ethernet0.pciSlotNumber": "32"
       },
-      "memory": "{{ user `memory` }}",
-      "cpus": "{{ user `cpus`}}",
-      "cores": "{{ user `cores`}}",
       "vmx_remove_ethernet_interfaces": true
+    },
+    {
+      "boot_command": [
+        "<esc><wait10><esc><esc><enter><wait>",
+        "set gfxpayload=1024x768<enter>",
+        "linux /install/vmlinuz ",
+        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/preseed-hyperv.cfg ",
+        "debian-installer=en_US.UTF-8 auto locale=en_US.UTF-8 kbd-chooser/method=us ",
+        "hostname={{.Name}} ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+        "keyboard-configuration/variant=USA console-setup/ask_detect=false <enter>",
+        "initrd /install/initrd.gz<enter>",
+        "boot<enter>"
+      ],
+      "boot_wait": "10s",
+      "communicator": "ssh",
+      "cpus": "{{ user `cpus` }}",
+      "disk_size": "{{user `disk_size`}}",
+      "enable_secure_boot": false,
+      "generation": "{{user `hyperv_generation`}}",
+      "http_directory": "{{user `http_directory`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `mirror`}}/{{user `mirror_directory`}}/{{user `iso_name`}}",
+      "memory": "{{user `memory`}}",
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-hyperv",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "10000s",
+      "ssh_username": "vagrant",
+      "switch_name": "{{user `hyperv_switch`}}",
+      "type": "hyperv-iso",
+      "vm_name": "{{ user `template` }}"
     }
   ],
   "post-processors": [
@@ -122,7 +144,7 @@
       },
       {
         "type": "vagrant-cloud",
-        "box_tag": "rgsystems/bionic64",
+        "box_tag": "rgsystems/buster64",
         "access_token": "{{ user `cloud_token` }}",
         "version": "{{ user `version` }}",
         "version_description": "{{ user `version_description` }}",
@@ -133,42 +155,50 @@
   "provisioners": [
     {
       "environment_vars": [
-        "HOME_DIR=/home/vagrant"
+        "HOME_DIR=/home/vagrant",
+        "http_proxy={{user `http_proxy`}}",
+        "https_proxy={{user `https_proxy`}}",
+        "no_proxy={{user `no_proxy`}}"
       ],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
       "expect_disconnect": true,
       "scripts": [
-        "scripts/update.sh",
-        "../_common/motd.sh",
-        "../_common/sshd.sh",
-        "scripts/networking.sh",
-        "scripts/sudoers.sh",
-        "scripts/vagrant.sh",
-        "../_common/virtualbox.sh",
-        "scripts/vmware.sh",
-        "scripts/cleanup.sh",
-        "../_common/minimize.sh"
+        "{{template_dir}}/scripts/update.sh",
+        "{{template_dir}}/../_common/motd.sh",
+        "{{template_dir}}/../_common/sshd.sh",
+        "{{template_dir}}/scripts/networking.sh",
+        "{{template_dir}}/scripts/sudoers.sh",
+        "{{template_dir}}/scripts/vagrant.sh",
+        "{{template_dir}}/../_common/virtualbox.sh",
+        "{{template_dir}}/scripts/vmware.sh",
+        "{{template_dir}}/scripts/cleanup.sh",
+        "{{template_dir}}/../_common/minimize.sh"
       ],
       "type": "shell"
     }
   ],
   "variables": {
     "box_basename": "ubuntu-18.04",
-    "cpus": "2",
-    "cores": "1",
-    "disk_size": "20480",
+    "build_directory": "../../builds",
+    "http_directory": "{{template_dir}}/http",
+    "build_timestamp": "{{isotime \"20060102150405\"}}",
+    "cpus": "1",
+    "disk_size": "65536",
     "headless": "",
+    "http_proxy": "{{env `http_proxy`}}",
+    "https_proxy": "{{env `https_proxy`}}",
+    "guest_additions_url": "",
     "iso_checksum": "7d8e0055d663bffa27c1718685085626cb59346e7626ba3d3f476322271f573e",
     "iso_checksum_type": "sha256",
     "iso_name": "ubuntu-18.04.3-server-amd64.iso",
-    "memory": "2048",
+    "memory": "1024",
     "mirror": "http://cdimage.ubuntu.com",
     "mirror_directory": "ubuntu/releases/18.04.3/release",
     "name": "ubuntu-18.04",
+    "no_proxy": "{{env `no_proxy`}}",
     "preseed_path": "preseed.cfg",
     "template": "ubuntu-18.04-amd64",
-    "cloud_token": "{{ env `VAGRANTCLOUD_TOKEN` }}",
     "version": "1.0.{{ timestamp }}",
-    "version_description": "Ubuntu 18.04.03 + VBoxGuestAdditions v6.0.14. Built with Packer and uploaded through vagrant-cloud's post-processor. Disk size 20GB."
+    "version_description": "Ubuntu version: 18.04.03. <br> VirtualBox version: 6.1.2. <br> Disk size 65GB."
   }
 }
