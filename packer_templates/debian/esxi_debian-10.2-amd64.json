@@ -66,7 +66,7 @@
     {
       "type": "file",
       "source": "{{ user `ansible_pubkey_src` }}",
-      "destination": "{{ user `ansible_pubkey_dest` }}"
+      "destination": "/tmp/id_rsa.pub"
     },
     {
       "environment_vars": [
@@ -89,24 +89,23 @@
   ],
   "variables": {
     "ansible_pubkey_src": "ssh/id_rsa.pub",
-    "ansible_pubkey_dest": "/tmp/ansible_id_rsa_pub",
     "box_basename": "debian-10.2",
     "cpus": "2",
     "cores": "1",
     "memory": "2048",
-    "disk_size": "40960",
+    "disk_size": "65536",
     "network": "NAT Network",
-    "ip_address": "192.168.1.52",
+    "ip_address": "192.168.1.25",
     "netmask": "255.255.255.0",
     "gateway": "192.168.1.1",
     "nameservers": "192.168.1.1",
     "domain": "",
-    "vm_name": "worker03-beta",
+    "vm_name": "api01-beta",
     "iso_checksum": "e43fef979352df15056ac512ad96a07b515cb8789bf0bfd86f99ed0404f885f5",
     "iso_checksum_type": "sha256",
     "iso_name": "debian-10.2.0-amd64-netinst.iso",
     "mirror": "http://cdimage.debian.org/cdimage/release",
     "mirror_directory": "10.2.0/amd64/iso-cd",
-    "preseed_path": "debian-10/esxi-preseed.cfg"
+    "preseed_path": "debian-10/preseed.cfg"
   }
 }
