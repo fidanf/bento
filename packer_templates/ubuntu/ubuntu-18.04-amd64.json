@@ -181,7 +181,6 @@
     "box_basename": "ubuntu-18.04",
     "build_directory": "../../builds",
     "http_directory": "{{template_dir}}/http",
-    "build_timestamp": "{{isotime \"20060102150405\"}}",
     "cpus": "1",
     "disk_size": "65536",
     "headless": "",
