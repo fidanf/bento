@@ -106,13 +106,6 @@
     {
       "output": "../../builds/{{user `box_basename`}}.{{.Provider}}.box",
       "type": "vagrant"
-    },
-    {
-      "type": "vagrant-cloud",
-      "box_tag": "rgsystems/buster64",
-      "access_token": "{{ user `cloud_token` }}",
-      "version": "{{ user `version` }}",
-      "version_description": "{{ user `version_description` }}"
     }
   ]
 ],
@@ -151,7 +144,7 @@
     "cpus": "2",
     "cores": "1",
     "memory": "2048",
-    "disk_size": "40960",
+    "disk_size": "65536",
     "headless": "",
     "iso_checksum": "e43fef979352df15056ac512ad96a07b515cb8789bf0bfd86f99ed0404f885f5",
     "iso_checksum_type": "sha256",
@@ -159,9 +152,6 @@
     "mirror": "http://cdimage.debian.org/cdimage/release",
     "mirror_directory": "10.2.0/amd64/iso-cd",
     "name": "debian-10.2",
-    "preseed_path": "debian-10/preseed.cfg",
-    "cloud_token": "{{ env `VAGRANTCLOUD_TOKEN` }}",
-    "version": "1.0.{{ timestamp }}",
-    "version_description": "Debian 10.2.0. Built with Packer and uploaded through vagrant-cloud's post-processor. Disk size 40GB."
+    "preseed_path": "debian-10/preseed.cfg"
   }
 }
