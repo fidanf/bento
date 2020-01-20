@@ -98,7 +98,8 @@
         "box_tag": "rgsystems/buster64",
         "access_token": "{{ user `cloud_token` }}",
         "version": "{{ user `version` }}",
-        "version_description": "{{ user `version_description` }}"
+        "version_description": "{{ user `version_description` }}",
+        "only": ["virtualbox-iso"]
       }
     ]
   ],
@@ -137,6 +138,7 @@
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
+    "cloud_token": "{{env `vagrantcloud_token`}}",
     "guest_additions_url": "",
     "iso_checksum": "e43fef979352df15056ac512ad96a07b515cb8789bf0bfd86f99ed0404f885f5",
     "iso_checksum_type": "sha256",
