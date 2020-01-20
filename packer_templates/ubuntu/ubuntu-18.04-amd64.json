@@ -144,7 +144,7 @@
       },
       {
         "type": "vagrant-cloud",
-        "box_tag": "rgsystems/buster64",
+        "box_tag": "rgsystems/bionic64",
         "access_token": "{{ user `cloud_token` }}",
         "version": "{{ user `version` }}",
         "version_description": "{{ user `version_description` }}",
