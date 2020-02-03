@@ -151,6 +151,6 @@
     "preseed_path": "debian-10/preseed.cfg",
     "template": "debian-10.2-amd64",
     "version": "1.0.{{ timestamp }}",
-    "version_description": "Debian version: 10.2.0. <br> VirtualBox version: 6.0.16. <br> Disk size 65GB."
+    "version_description": "Debian version: 10.2.0. <br> VirtualBox version: 6.1.2. <br> Disk size 65GB."
   }
 }
