@@ -36,7 +36,6 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_username": "vagrant",
-      "ssh_wait_timeout": "10000s",
       "vboxmanage": [
         [
           "modifyvm",
@@ -89,7 +88,6 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_username": "vagrant",
-      "ssh_wait_timeout": "10000s",
       "tools_upload_flavor": "linux",
       "vm_name": "{{ user `name` }}",
       "vmx_data": {
