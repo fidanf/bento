@@ -199,6 +199,6 @@
     "preseed_path": "preseed.cfg",
     "template": "ubuntu-18.04-amd64",
     "version": "1.0.{{ timestamp }}",
-    "version_description": "Ubuntu version: 18.04.03. <br> VirtualBox version: 6.1.2. <br> Disk size 65GB."
+    "version_description": "Ubuntu version: 18.04.04. <br> VirtualBox version: 6.1.4. <br> Disk size 65GB."
   }
 }
