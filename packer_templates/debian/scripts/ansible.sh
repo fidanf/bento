@@ -9,7 +9,7 @@ if [ ! $(id -u ansible) ]; then
     # create ansible user
     useradd -p $(openssl passwd -1 ansible) --create-home -s /bin/bash ansible
     # add ansible user to ansible group
-    usermod -a -G ansible ansible
+    usermod -aG ansible ansible
 fi
 
 # add it to sudoers
@@ -30,4 +30,4 @@ chmod 600 $HOME/.ssh/authorized_keys
 chown -R ansible:ansible $HOME
 
 # remove pubkey file
-rm -f /tmp/ansible_id_rsa_pub
+rm -f /tmp/id_rsa.pub
