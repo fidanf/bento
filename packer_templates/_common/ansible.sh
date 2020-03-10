@@ -3,14 +3,7 @@
 HOME=/home/ansible
 FILE=/tmp/id_rsa.pub
 
-if [ ! -f $FILE ] ; then 
-    "No pubkey uploaded. Exiting."
-    exit 0;
-fi
-
 dos2unix $FILE
-
-ANSIBLE_PUBKEY_CONTENT=$(cat $FILE)
 
 if [ ! $(id -u ansible) ]; then
     # create ansible user
@@ -30,6 +23,7 @@ visudo -cf /etc/sudoers.d/ansible
 
 # set ssh keys
 mkdir $HOME/.ssh/
+ANSIBLE_PUBKEY_CONTENT=$(cat $FILE)
 echo "$ANSIBLE_PUBKEY_CONTENT" | tee -a $HOME/.ssh/authorized_keys > /dev/null
 chmod 600 $HOME/.ssh/authorized_keys
 
