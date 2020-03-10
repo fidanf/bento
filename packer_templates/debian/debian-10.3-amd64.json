@@ -63,7 +63,7 @@
       ],
       "boot_wait": "10s",
       "disk_size": "{{user `disk_size`}}",
-      "guest_os_type": "debian8-64",
+      "guest_os_type": "other-64",
       "headless": "{{ user `headless` }}",
       "http_directory": "{{user `http_directory`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -79,7 +79,8 @@
       "type": "vmware-iso",
       "vm_name": "{{ user `template` }}",
       "memory": "{{ user `memory` }}",
-      "cpus": "{{ user `cpus` }}",
+      "cpus": "{{ user `cpus`}}",
+      "cores": "{{ user `cores`}}",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
         "ethernet0.pciSlotNumber": "32"
@@ -91,7 +92,8 @@
     [
       {
         "output": "../../builds/{{user `box_basename`}}.{{.Provider}}.box",
-        "type": "vagrant"
+        "type": "vagrant",
+        "only": ["virtualbox-iso"]
       },
       {
         "type": "vagrant-cloud",
@@ -120,6 +122,7 @@
         "{{template_dir}}/scripts/networking.sh",
         "{{template_dir}}/scripts/sudoers.sh",
         "{{template_dir}}/../_common/vagrant.sh",
+        "scripts/ansible.sh",
         "{{template_dir}}/scripts/systemd.sh",
         "{{template_dir}}/../_common/virtualbox.sh",
         "{{template_dir}}/../_common/vmware.sh",
@@ -130,11 +133,13 @@
     }
   ],
   "variables": {
+    "ansible_pubkey_src": "ssh/ansible_beta.pub",
     "box_basename": "debian-10.3",
     "build_directory": "../../builds",
     "http_directory": "{{template_dir}}/http",
-    "cpus": "2",
-    "disk_size": "65536",
+    "cpus": "1",
+    "cores": "1",
+    "disk_size": "102400",
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
