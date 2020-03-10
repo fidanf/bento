@@ -1,7 +1,7 @@
 #!/bin/bash -ux
 
 HOME=/home/ansible
-FILE=/tmp/id_rsa.pub
+FILE=/home/vagrant/id_rsa.pub
 
 dos2unix $FILE
 

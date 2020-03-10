@@ -125,7 +125,7 @@
     {
       "type": "file",
       "source": "{{ user `ansible_pubkey_src` }}",
-      "destination": "/tmp/id_rsa.pub"
+      "destination": "/home/vagrant/id_rsa.pub"
     },
     {
       "type": "shell",
@@ -144,7 +144,7 @@
         "{{template_dir}}/scripts/networking.sh",
         "{{template_dir}}/scripts/sudoers.sh",
         "{{template_dir}}/scripts/vagrant.sh",
-        "../_common/ansible.sh",
+        "{{template_dir}}/../_common/ansible.sh",
         "{{template_dir}}/../_common/virtualbox.sh",
         "{{template_dir}}/scripts/vmware.sh",
         "{{template_dir}}/scripts/cleanup.sh",
