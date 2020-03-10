@@ -1,14 +1,16 @@
-#!/bin/bash -eux
+#!/bin/bash -ux
 
-if ! [ -f /tmp/id_rsa.pub ] ; then 
+HOME=/home/ansible
+FILE=/tmp/id_rsa.pub
+
+if [ ! -f $FILE ] ; then 
     "No pubkey uploaded. Exiting."
     exit 0;
 fi
 
-dos2unix /tmp/id_rsa.pub
+dos2unix $FILE
 
-ANSIBLE_PUBKEY_CONTENT=$(cat /tmp/id_rsa.pub)
-HOME=/home/ansible
+ANSIBLE_PUBKEY_CONTENT=$(cat $FILE)
 
 if [ ! $(id -u ansible) ]; then
     # create ansible user
@@ -35,4 +37,4 @@ chmod 600 $HOME/.ssh/authorized_keys
 chown -R ansible:ansible $HOME
 
 # remove pubkey file
-rm -f /tmp/id_rsa.pub
+rm -f $FILE
