@@ -75,7 +75,7 @@
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
       "expect_disconnect": true,
       "scripts": [
-        "../common/ansible.sh",
+        "../_common/ansible.sh",
         "scripts/update.sh",
         "../_common/motd.sh",
         "../_common/sshd.sh",

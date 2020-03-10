@@ -144,7 +144,7 @@
         "{{template_dir}}/scripts/networking.sh",
         "{{template_dir}}/scripts/sudoers.sh",
         "{{template_dir}}/scripts/vagrant.sh",
-        "../common/ansible.sh",
+        "../_common/ansible.sh",
         "{{template_dir}}/../_common/virtualbox.sh",
         "{{template_dir}}/scripts/vmware.sh",
         "{{template_dir}}/scripts/cleanup.sh",
