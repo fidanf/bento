@@ -94,6 +94,7 @@
       "vm_name": "{{ user `template` }}",
       "memory": "{{ user `memory` }}",
       "cpus": "{{ user `cpus` }}",
+      "cores": "{{ user `cores` }}",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
         "ethernet0.pciSlotNumber": "32"
@@ -105,7 +106,8 @@
     [
       {
         "output": "../../builds/{{user `box_basename`}}.{{.Provider}}.box",
-        "type": "vagrant"
+        "type": "vagrant",
+        "only": ["virtualbox-iso"]
       },
       {
         "type": "vagrant-cloud",
@@ -119,6 +121,12 @@
   ],
   "provisioners": [
     {
+      "type": "file",
+      "source": "{{ user `ansible_pubkey_src` }}",
+      "destination": "/tmp/id_rsa.pub"
+    },
+    {
+      "type": "shell",
       "environment_vars": [
         "HOME_DIR=/home/vagrant",
         "http_proxy={{user `http_proxy`}}",
@@ -134,20 +142,22 @@
         "{{template_dir}}/scripts/networking.sh",
         "{{template_dir}}/scripts/sudoers.sh",
         "{{template_dir}}/scripts/vagrant.sh",
+        "../common/ansible.sh",
         "{{template_dir}}/../_common/virtualbox.sh",
         "{{template_dir}}/scripts/vmware.sh",
         "{{template_dir}}/scripts/cleanup.sh",
         "{{template_dir}}/../_common/minimize.sh"
-      ],
-      "type": "shell"
+      ]
     }
   ],
   "variables": {
+    "ansible_pubkey_src": "ssh/ansible_beta.pub",
     "box_basename": "ubuntu-18.04",
     "build_directory": "../../builds",
     "http_directory": "{{template_dir}}/http",
     "cpus": "1",
-    "disk_size": "65536",
+    "cores": "1",
+    "disk_size": "102400",
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
@@ -156,7 +166,7 @@
     "iso_checksum": "e2ecdace33c939527cbc9e8d23576381c493b071107207d2040af72595f8990b",
     "iso_checksum_type": "sha256",
     "iso_name": "ubuntu-18.04.4-server-amd64.iso",
-    "memory": "1024",
+    "memory": "4096",
     "mirror": "http://cdimage.ubuntu.com",
     "mirror_directory": "ubuntu/releases/18.04.4/release",
     "name": "ubuntu-18.04",
