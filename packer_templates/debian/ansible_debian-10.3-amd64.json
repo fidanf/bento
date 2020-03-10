@@ -128,7 +128,7 @@
         "scripts/networking.sh",
         "scripts/sudoers.sh",
         "../_common/vagrant.sh",
-        "scripts/ansible.sh",
+        "../common/ansible.sh",
         "scripts/systemd.sh",
         "../_common/virtualbox.sh",
         "../_common/vmware.sh",

@@ -1,5 +1,10 @@
 #!/bin/bash -eux
 
+if ! [ -f /tmp/id_rsa.pub ] ; then 
+    "No pubkey uploaded. Exiting."
+    exit 0;
+fi
+
 dos2unix /tmp/id_rsa.pub
 
 ANSIBLE_PUBKEY_CONTENT=$(cat /tmp/id_rsa.pub)

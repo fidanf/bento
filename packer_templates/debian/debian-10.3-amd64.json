@@ -122,7 +122,7 @@
         "{{template_dir}}/scripts/networking.sh",
         "{{template_dir}}/scripts/sudoers.sh",
         "{{template_dir}}/../_common/vagrant.sh",
-        "scripts/ansible.sh",
+        "../common/ansible.sh",
         "{{template_dir}}/scripts/systemd.sh",
         "{{template_dir}}/../_common/virtualbox.sh",
         "{{template_dir}}/../_common/vmware.sh",
