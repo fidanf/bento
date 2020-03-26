@@ -151,7 +151,10 @@
   "post-processors": [
     {
       "output": "{{ user `build_directory` }}/{{user `box_basename`}}.{{.Provider}}.box",
-      "type": "vagrant"
+      "type": "vagrant",
+      "only": [
+        "virtualbox-iso"
+      ]
     },
     {
       "type": "vagrant-cloud",
