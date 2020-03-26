@@ -163,7 +163,7 @@
     "http_directory": "{{template_dir}}/http",
     "cpus": "1",
     "cores": "1",
-    "disk_size": "102400",
+    "disk_size": "65536",
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
