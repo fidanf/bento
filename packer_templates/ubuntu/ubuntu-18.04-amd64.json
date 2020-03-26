@@ -109,7 +109,9 @@
       {
         "output": "../../builds/{{user `box_basename`}}.{{.Provider}}.box",
         "type": "vagrant",
-        "only": ["virtualbox-iso"]
+        "only": [
+          "virtualbox-iso"
+        ]
       },
       {
         "type": "vagrant-cloud",
@@ -117,7 +119,9 @@
         "access_token": "{{ user `cloud_token` }}",
         "version": "{{ user `version` }}",
         "version_description": "{{ user `version_description` }}",
-        "only": ["virtualbox-iso"]
+        "only": [
+          "virtualbox-iso"
+        ]
       }
     ]
   ],
