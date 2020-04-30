@@ -149,23 +149,55 @@
     }
   ],
   "post-processors": [
-    {
-      "output": "{{ user `build_directory` }}/{{user `box_basename`}}.{{.Provider}}.box",
-      "type": "vagrant",
-      "only": [
-        "virtualbox-iso"
-      ]
-    },
-    {
-      "type": "vagrant-cloud",
-      "box_tag": "rgsystems/disco64",
-      "access_token": "{{ user `cloud_token` }}",
-      "version": "{{ user `version` }}",
-      "version_description": "{{ user `version_description` }}",
-      "only": [
-        "virtualbox-iso"
-      ]
-    }
+    [
+      {
+        "type":                       "vagrant",
+        "output":                     "../../builds/{{ user `box_basename` }}.{{ .Provider }}.box",
+        "only": [
+          "virtualbox-iso"
+        ]
+      },
+      {
+        "type":                       "vagrant-cloud",
+        "box_tag":                    "rgsystems/buster64",
+        "access_token":               "{{ user `vagrant_cloud_token` }}",
+        "version":                    "{{ user `vagrant_version` }}",
+        "version_description":        "{{ user `vagrant_version_description` }}",
+        "only": [
+          "virtualbox-iso"
+        ]
+      }
+    ],
+    [
+      {
+        "type":                       "vsphere",
+        "vm_name":                    "{{ user `template` }}-{{ timestamp }}",
+        "datacenter":                 "{{ user `vcenter_datacenter` }}",
+        "cluster":                    "{{ user `vcenter_cluster` }}",
+        "datastore":                  "{{ user `vcenter_datastore` }}",
+        "host":                       "{{ user `vcenter_host` }}",
+        "username":                   "{{ user `vcenter_username` }}",
+        "password":                   "{{ user `vcenter_password` }}",
+        "disk_mode":                  "{{ user `disk_mode` }}",
+        "vm_folder":                  "{{ user `vcenter_vm_folder` }}",
+        "keep_input_artifact":        true,
+        "only": [
+          "vmware-iso"
+        ]
+      },
+      {
+        "type":                       "vsphere-template",
+        "datacenter":                 "{{ user `vcenter_datacenter` }}",
+        "host":                       "{{ user `vcenter_host` }}",
+        "username":                   "{{ user `vcenter_username` }}",
+        "password":                   "{{ user `vcenter_password` }}",
+        "folder":                     "{{ user `vcenter_template_folder` }}",
+        "insecure":                   true,
+        "only": [
+          "vmware-iso"
+        ]
+      }
+    ]
   ],
   "provisioners": [
     {
@@ -199,7 +231,7 @@
     }
   ],
   "variables": {
-    "ansible_pubkey_src": "ssh/ansible_beta.pub",
+    "ansible_pubkey_src": "{{ template_dir }}/ssh/ansible_beta.pub",
     "box_basename": "ubuntu-19.10",
     "build_directory": "../../builds",
     "http_directory": "{{template_dir}}/http",
@@ -212,7 +244,6 @@
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
     "no_proxy": "{{env `no_proxy`}}",
-    "cloud_token": "{{env `vagrantcloud_token`}}",
     "guest_additions_url": "",
     "iso_checksum": "921fd8b271c04aa86a321cc35b40e677f9b85f7903bf2204efb2389b0f0a64c1",
     "iso_checksum_type": "sha256",
@@ -222,7 +253,8 @@
     "name": "ubuntu-19.10",
     "preseed_path": "preseed.cfg",
     "template": "ubuntu-19.10-amd64",
-    "version": "1.0.{{ timestamp }}",
-    "version_description": "Ubuntu version: 19.10. <br> VirtualBox version: 6.1.4. <br> Disk size 65GB."
+    "vagrant_cloud_token": "{{ env `vagrantcloud_token` }}",
+    "vagrant_version": "1.0.{{ timestamp }}",
+    "vagrant_version_description": "Debian version: 10.3.0. <br> VirtualBox version: 6.1.4. <br> Disk size 65GB."
   }
 }
