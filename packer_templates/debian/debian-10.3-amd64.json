@@ -1,10 +1,11 @@
 {
   "builders": [
     {
+      "type": "virtualbox-iso",
       "boot_command": [
         "<esc><wait>",
         "install <wait>",
-        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `preseed_path`}} <wait>",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `preseed_path` }} <wait>",
         "debian-installer=en_US.UTF-8 <wait>",
         "auto <wait>",
         "locale=en_US.UTF-8 <wait>",
@@ -20,33 +21,33 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": "{{user `disk_size`}}",
+      "disk_size": "{{ user `disk_size` }}",
       "guest_additions_url": "{{ user `guest_additions_url` }}",
-      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "guest_additions_path": "VBoxGuestAdditions_{{ .Version }}.iso",
       "guest_os_type": "Debian_64",
       "hard_drive_interface": "sata",
       "headless": "{{ user `headless` }}",
-      "http_directory": "{{user `http_directory`}}",
-      "iso_checksum": "{{user `iso_checksum`}}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "iso_url": "{{user `mirror`}}/{{user `mirror_directory`}}/{{user `iso_name`}}",
-      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-virtualbox",
+      "http_directory": "{{user `http_directory` }}",
+      "iso_checksum": "{{user `iso_checksum` }}",
+      "iso_checksum_type": "{{user `iso_checksum_type` }}",
+      "iso_url": "{{ user `mirror` }}/{{ user `mirror_directory` }}/{{ user `iso_name` }}",
+      "output_directory": "{{ user `build_directory` }}/packer-{{ user `template` }}-virtualbox",
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/shutdown -hP now",
+      "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_username": "vagrant",
-      "ssh_timeout": "1h",
-      "type": "virtualbox-iso",
+      "ssh_timeout": "30m",
       "memory": "{{ user `memory` }}",
       "cpus": "{{ user `cpus` }}",
       "virtualbox_version_file": ".vbox_version",
       "vm_name": "{{ user `template` }}"
     },
     {
+      "type": "vmware-iso",
       "boot_command": [
         "<esc><wait>",
         "install <wait>",
-        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `preseed_path`}} <wait>",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `preseed_path` }} <wait>",
         "debian-installer=en_US.UTF-8 <wait>",
         "auto <wait>",
         "locale=en_US.UTF-8 <wait>",
@@ -62,25 +63,24 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": "{{user `disk_size`}}",
+      "disk_size": "{{ user `disk_size` }}",
       "guest_os_type": "other-64",
       "headless": "{{ user `headless` }}",
-      "http_directory": "{{user `http_directory`}}",
-      "iso_checksum": "{{user `iso_checksum`}}",
+      "http_directory": "{{user `http_directory` }}",
+      "iso_checksum": "{{ user `iso_checksum` }}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "iso_url": "{{user `mirror`}}/{{user `mirror_directory`}}/{{user `iso_name`}}",
-      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-vmware",
+      "iso_url": "{{ user `mirror` }}/{{ user `mirror_directory` }}/{{ user `iso_name` }}",
+      "output_directory": "{{ user `build_directory` }}/packer-{{ user `template` }}-vmware",
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/shutdown -hP now",
+      "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_username": "vagrant",
-      "ssh_timeout": "1h",
+      "ssh_timeout": "30m",
       "tools_upload_flavor": "linux",
-      "type": "vmware-iso",
       "vm_name": "{{ user `template` }}",
       "memory": "{{ user `memory` }}",
-      "cpus": "{{ user `cpus`}}",
-      "cores": "{{ user `cores`}}",
+      "cpus": "{{ user `cpus` }}",
+      "cores": "{{ user `cores` }}",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
         "ethernet0.pciSlotNumber": "32"
@@ -91,17 +91,51 @@
   "post-processors": [
     [
       {
-        "output": "../../builds/{{user `box_basename`}}.{{.Provider}}.box",
-        "type": "vagrant",
-        "only": ["virtualbox-iso"]
+        "type":                       "vagrant",
+        "output":                     "../../builds/{{ user `box_basename` }}.{{ .Provider }}.box",
+        "only": [
+          "virtualbox-iso"
+        ]
       },
       {
-        "type": "vagrant-cloud",
-        "box_tag": "rgsystems/buster64",
-        "access_token": "{{ user `cloud_token` }}",
-        "version": "{{ user `version` }}",
-        "version_description": "{{ user `version_description` }}",
-        "only": ["virtualbox-iso"]
+        "type":                       "vagrant-cloud",
+        "box_tag":                    "rgsystems/buster64",
+        "access_token":               "{{ user `vagrant_cloud_token` }}",
+        "version":                    "{{ user `vagrant_version` }}",
+        "version_description":        "{{ user `vagrant_version_description` }}",
+        "only": [
+          "virtualbox-iso"
+        ]
+      }
+    ],
+    [
+      {
+        "type":                       "vsphere",
+        "vm_name":                    "{{ user `template` }}-{{ timestamp }}",
+        "datacenter":                 "{{ user `vcenter_datacenter` }}",
+        "cluster":                    "{{ user `vcenter_cluster` }}",
+        "datastore":                  "{{ user `vcenter_datastore` }}",
+        "host":                       "{{ user `vcenter_host` }}",
+        "username":                   "{{ user `vcenter_username` }}",
+        "password":                   "{{ user `vcenter_password` }}",
+        "disk_mode":                  "{{ user `disk_mode` }}",
+        "vm_folder":                  "{{ user `vcenter_vm_folder` }}",
+        "keep_input_artifact":        true,
+        "only": [
+          "vmware-iso"
+        ]
+      },
+      {
+        "type":                       "vsphere-template",
+        "datacenter":                 "{{ user `vcenter_datacenter` }}",
+        "host":                       "{{ user `vcenter_host` }}",
+        "username":                   "{{ user `vcenter_username` }}",
+        "password":                   "{{ user `vcenter_password` }}",
+        "folder":                     "{{ user `vcenter_template_folder` }}",
+        "insecure":                   true,
+        "only": [
+          "vmware-iso"
+        ]
       }
     ]
   ],
@@ -109,11 +143,11 @@
     {
       "environment_vars": [
         "HOME_DIR=/home/vagrant",
-        "http_proxy={{user `http_proxy`}}",
-        "https_proxy={{user `https_proxy`}}",
-        "no_proxy={{user `no_proxy`}}"
+        "http_proxy={{ user `http_proxy` }}",
+        "https_proxy={{ user `https_proxy` }}",
+        "no_proxy={{ user `no_proxy`}}"
       ],
-      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
+      "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -S -E sh -eux '{{ .Path }}'",
       "expect_disconnect": true,
       "scripts": [
         "{{template_dir}}/scripts/update.sh",
@@ -122,7 +156,7 @@
         "{{template_dir}}/scripts/networking.sh",
         "{{template_dir}}/scripts/sudoers.sh",
         "{{template_dir}}/../_common/vagrant.sh",
-        "../_common/ansible.sh",
+        "{{template_dir}}/../_common/ansible.sh",
         "{{template_dir}}/scripts/systemd.sh",
         "{{template_dir}}/../_common/virtualbox.sh",
         "{{template_dir}}/../_common/vmware.sh",
@@ -136,14 +170,14 @@
     "ansible_pubkey_src": "ssh/ansible_beta.pub",
     "box_basename": "debian-10.3",
     "build_directory": "../../builds",
-    "http_directory": "{{template_dir}}/http",
+    "http_directory": "{{ template_dir }}/http",
     "cpus": "1",
     "cores": "1",
-    "disk_size": "102400",
+    "disk_size": "60000",
+    "disk_mode": "thin",
     "headless": "",
-    "http_proxy": "{{env `http_proxy`}}",
-    "https_proxy": "{{env `https_proxy`}}",
-    "cloud_token": "{{env `vagrantcloud_token`}}",
+    "http_proxy": "{{ env `http_proxy` }}",
+    "https_proxy": "{{ env `https_proxy` }}",
     "guest_additions_url": "",
     "iso_checksum": "6a901b5abe43d88b39d627e1339d15507cc38f980036b928f835e0f0e957d3d8",
     "iso_checksum_type": "sha256",
@@ -152,10 +186,11 @@
     "mirror": "http://cdimage.debian.org/cdimage/release",
     "mirror_directory": "10.3.0/amd64/iso-cd",
     "name": "debian-10.3",
-    "no_proxy": "{{env `no_proxy`}}",
+    "no_proxy": "{{ env `no_proxy` }}",
     "preseed_path": "debian-10/preseed.cfg",
     "template": "debian-10.3-amd64",
-    "version": "1.0.{{ timestamp }}",
-    "version_description": "Debian version: 10.3.0. <br> VirtualBox version: 6.1.4. <br> Disk size 65GB."
+    "vagrant_cloud_token": "{{ env `vagrantcloud_token` }}",
+    "vagrant_version": "1.0.{{ timestamp }}",
+    "vagrant_version_description": "Debian version: 10.3.0. <br> VirtualBox version: 6.1.4. <br> Disk size 65GB."
   }
 }

@@ -1,4 +1,4 @@
-vars.json
+*vars.json
 *rsa
 *.pub
 *.key
