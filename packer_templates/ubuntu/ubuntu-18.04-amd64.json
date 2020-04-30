@@ -127,7 +127,7 @@
     [
       {
         "type":                       "vsphere",
-        "vm_name":                    "{{ user `template` }}-{{ build_timestamp }}",
+        "vm_name":                    "{{ user `template` }}",
         "datacenter":                 "{{ user `vcenter_datacenter` }}",
         "cluster":                    "{{ user `vcenter_cluster` }}",
         "datastore":                  "{{ user `vcenter_datastore` }}",
