@@ -233,7 +233,7 @@
   "variables": {
     "ansible_pubkey_src": "{{ template_dir }}/ssh/ansible_beta.pub",
     "box_basename": "ubuntu-19.10",
-    "build_directory": "../../builds",
+    "build_directory": "{{ template_dir }}/../../builds",
     "http_directory": "{{template_dir}}/http",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "memory": "4096",

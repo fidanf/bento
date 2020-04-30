@@ -169,7 +169,7 @@
   "variables": {
     "ansible_pubkey_src": "{{ template_dir }}/ssh/ansible_beta.pub",
     "box_basename": "debian-10.3",
-    "build_directory": "../../builds",
+    "build_directory": "{{ template_dir }}/../../builds",
     "build_timestamp": "{{isotime \"20060102150405\"}}",
     "http_directory": "{{ template_dir }}/http",
     "cpus": "1",
