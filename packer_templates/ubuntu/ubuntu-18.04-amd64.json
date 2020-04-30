@@ -192,6 +192,7 @@
     "box_basename": "ubuntu-18.04",
     "build_directory": "{{ template_dir }}/../../builds",
     "build_timestamp": "{{ isotime \"20060102150405\" }}",
+    "template": "ubuntu-18.04-amd64-{{ build_timestamp }}",
     "http_directory": "{{ template_dir }}/http",
     "memory": "4096",
     "cpus": "1",
@@ -210,7 +211,6 @@
     "mirror_directory": "ubuntu/releases/18.04.4/release",
     "name": "ubuntu-18.04",
     "preseed_path": "preseed.cfg",
-    "template": "ubuntu-18.04-amd64",
     "vagrant_cloud_token": "{{ env `vagrantcloud_token` }}",
     "vagrant_version": "1.0.{{ timestamp }}",
     "vagrant_version_description": "Debian version: 10.3.0. <br> VirtualBox version: 6.1.4. <br> Disk size 65GB."

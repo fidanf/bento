@@ -176,6 +176,7 @@
     "box_basename": "debian-10.3",
     "build_directory": "{{ template_dir }}/../../builds",
     "build_timestamp": "{{ isotime \"20060102150405\" }}",
+    "template": "debian-10.3-amd64-{{ build_timestamp }}",
     "http_directory": "{{ template_dir }}/http",
     "cpus": "1",
     "cores": "1",
@@ -194,7 +195,6 @@
     "name": "debian-10.3",
     "no_proxy": "{{ env `no_proxy` }}",
     "preseed_path": "debian-10/preseed.cfg",
-    "template": "debian-10.3-amd64",
     "vagrant_cloud_token": "{{ env `vagrantcloud_token` }}",
     "vagrant_version": "1.0.{{ timestamp }}",
     "vagrant_version_description": "Debian version: 10.3.0. <br> VirtualBox version: 6.1.4. <br> Disk size 65GB."

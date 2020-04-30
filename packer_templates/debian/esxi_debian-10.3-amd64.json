@@ -107,7 +107,7 @@
   "variables": {
     "ansible_pubkey_src": "{{ env `home` }}/.ssh/id_rsa.pub",
     "build_timestamp":    "{{ isotime \"20060102150405\" }}",
-    "vm_name":            "debian-10.3",
+    "vm_name":            "debian-10.3-{{ user `build_timestamp` }}",
     "cpus":               "1",
     "cores":              "1",
     "memory":             "2048",
