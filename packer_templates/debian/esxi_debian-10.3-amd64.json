@@ -49,7 +49,7 @@
       "memory":               "{{ user `memory` }}",
       "cpus":                 "{{ user `cpus` }}",
       "cores":                "{{ user `cores` }}",
-      "vm_name":              "{{ user `template` }}",
+      "vm_name":              "{{ user `vm_name` }}",
       "remote_type":          "esx5",
       "remote_host":          "{{ user `esxi_host` }}",
       "remote_datastore":     "{{ user `esxi_datastore` }}",
@@ -103,7 +103,8 @@
   ],
   "variables": {
     "ansible_pubkey_src": "{{ template_dir }}/ssh/ansible_beta.pub",
-    "template":           "debian-10.3-amd64",
+    "build_timestamp":    "{{isotime \"20060102150405\"}}",
+    "vm_name":            "debian-10.3-{{ user `build_timestamp` }}",
     "cpus":               "1",
     "cores":              "1",
     "memory":             "2048",
