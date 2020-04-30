@@ -101,7 +101,7 @@
     }
   ],
   "variables": {
-    "ansible_pubkey_src": "ssh/ansible_beta.pub",
+    "ansible_pubkey_src": "{{ template_dir }}/ssh/ansible_beta.pub",
     "template": "debian-10.3-amd64",
     "cpus": "1",
     "cores": "1",
