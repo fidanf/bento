@@ -64,7 +64,7 @@
       ],
       "boot_wait": "10s",
       "disk_size": "{{ user `disk_size` }}",
-      "guest_os_type": "Debian_64",
+      "guest_os_type": "debian10-64",
       "headless": "{{ user `headless` }}",
       "http_directory": "{{user `http_directory` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
