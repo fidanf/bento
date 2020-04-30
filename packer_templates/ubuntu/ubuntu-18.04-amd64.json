@@ -187,7 +187,7 @@
     }
   ],
   "variables": {
-    "ansible_pubkey_src": "{{ template_dir }}/ssh/ansible_beta.pub",
+    "ansible_pubkey_src": "{{ env `home` }}/.ssh/id_rsa.pub",
     "box_basename": "ubuntu-18.04",
     "build_directory": "{{ template_dir }}/../../builds",
     "build_timestamp": "{{ isotime \"20060102150405\" }}",
