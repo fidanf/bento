@@ -19,3 +19,4 @@ Berksfile.lock
 ubuntu/scripts/homestead.sh
 *.log
 .idea/
+packer_templates/_vars/*.json
