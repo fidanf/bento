@@ -80,25 +80,28 @@
     {
       "type":         "file",
       "source":       "{{ user `ansible_pubkey_src` }}",
-      "destination":  "/tmp/id_rsa.pub"
+      "destination":  "/home/vagrant/id_rsa.pub"
     },
     {
       "environment_vars": [
         "HOME_DIR=/home/vagrant"
       ],
+      "type": "shell",
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
       "expect_disconnect": true,
       "scripts": [
-        "{{ template_dir }}/../_common/ansible.sh",
         "{{ template_dir }}/scripts/update.sh",
         "{{ template_dir }}/../_common/motd.sh",
         "{{ template_dir }}/../_common/sshd.sh",
         "{{ template_dir }}/scripts/networking.sh",
-        "{{ template_dir }}/scripts/systemd.sh",
+        "{{ template_dir }}/scripts/sudoers.sh",
+        "{{ template_dir }}/scripts/vagrant.sh",
+        "{{ template_dir }}/../_common/ansible.sh",
+        "{{ template_dir }}/../_common/virtualbox.sh",
+        "{{ template_dir }}/scripts/vmware.sh",
         "{{ template_dir }}/scripts/cleanup.sh",
         "{{ template_dir }}/../_common/minimize.sh"
-      ],
-      "type": "shell"
+      ]
     }
   ],
   "variables": {
