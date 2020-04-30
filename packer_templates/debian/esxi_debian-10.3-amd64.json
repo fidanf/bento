@@ -37,7 +37,7 @@
         "<enter><wait>"
       ],
       "disk_size":            "{{ user `disk_size` }}",
-      "guest_os_type":        "other-64",
+      "guest_os_type":        "Debian_64",
       "keep_registered":      true,
       "skip_export":          true,
       "vnc_disable_password": true,
