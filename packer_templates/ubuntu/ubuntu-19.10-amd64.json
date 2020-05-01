@@ -159,7 +159,7 @@
       },
       {
         "type":                       "vagrant-cloud",
-        "box_tag":                    "rgsystems/buster64",
+        "box_tag":                    "rgsystems/disco64",
         "access_token":               "{{ user `vagrant_cloud_token` }}",
         "version":                    "{{ user `vagrant_version` }}",
         "version_description":        "{{ user `vagrant_version_description` }}",
