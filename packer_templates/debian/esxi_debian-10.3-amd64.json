@@ -37,6 +37,7 @@
         "<enter><wait>"
       ],
       "disk_size":            "{{ user `disk_size` }}",
+      "disk_type_id":         "{{ user `disk_type_id` }}",
       "guest_os_type":        "debian8-64",
       "keep_registered":      true,
       "skip_export":          true,
@@ -49,6 +50,7 @@
       "memory":               "{{ user `memory` }}",
       "cpus":                 "{{ user `cpus` }}",
       "cores":                "{{ user `cores` }}",
+      "version":              12,
       "vm_name":              "{{ user `vm_name` }}",
       "remote_type":          "esx5",
       "remote_host":          "{{ user `esxi_host` }}",
@@ -58,8 +60,7 @@
       "shutdown_command":     "echo 'vagrant' | sudo -S /sbin/shutdown -hP now",
       "vmx_data": {
         "ethernet0.pciSlotNumber":  "32",
-        "ethernet0.networkName":    "{{ user `network` }}",
-        "virtualHW.version":        12
+        "ethernet0.networkName":    "{{ user `network` }}"
       }
     }
   ],
@@ -72,6 +73,7 @@
       "password":             "{{ user `vcenter_password` }}",
       "folder":               "{{ user `vcenter_template_folder` }}",
       "insecure":             true,
+      "reregister_vm":        false,
       "only": [
         "vmware-iso"
       ]
@@ -111,9 +113,9 @@
     "vm_name":            "debian-10.3-{{ user `build_timestamp` }}",
     "cpus":               "1",
     "cores":              "1",
-    "memory":             "2048",
+    "memory":             "1024",
     "disk_size":          "65536",
-    "disk_mode":          "thin",
+    "disk_type_id":       "thin",
     "network":            "VM Network",
     "ip_address":         "192.168.1.11",
     "netmask":            "255.255.255.0",
