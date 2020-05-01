@@ -107,43 +107,13 @@
           "virtualbox-iso"
         ]
       }
-    ],
-    [
-      {
-        "type":                       "vsphere",
-        "vm_name":                    "{{ user `template` }}",
-        "datacenter":                 "{{ user `vcenter_datacenter` }}",
-        "cluster":                    "{{ user `vcenter_cluster` }}",
-        "datastore":                  "{{ user `vcenter_datastore` }}",
-        "host":                       "{{ user `vcenter_host` }}",
-        "username":                   "{{ user `vcenter_username` }}",
-        "password":                   "{{ user `vcenter_password` }}",
-        "disk_mode":                  "{{ user `disk_mode` }}",
-        "vm_folder":                  "{{ user `vcenter_vm_folder` }}",
-        "keep_input_artifact":        true,
-        "only": [
-          "vmware-iso"
-        ]
-      },
-      {
-        "type":                       "vsphere-template",
-        "datacenter":                 "{{ user `vcenter_datacenter` }}",
-        "host":                       "{{ user `vcenter_host` }}",
-        "username":                   "{{ user `vcenter_username` }}",
-        "password":                   "{{ user `vcenter_password` }}",
-        "folder":                     "{{ user `vcenter_template_folder` }}",
-        "insecure":                   true,
-        "only": [
-          "vmware-iso"
-        ]
-      }
     ]
   ],
   "provisioners": [
     {
-      "type": "file",
-      "source": "{{ user `ansible_pubkey_src` }}",
-      "destination": "/home/vagrant/id_rsa.pub"
+      "type":         "file",
+      "source":       "{{ user `ansible_pubkey_src` }}",
+      "destination":  "/home/vagrant/id_rsa.pub"
     },
     {
       "environment_vars": [
