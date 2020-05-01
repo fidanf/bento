@@ -1,6 +1,7 @@
 {
   "builders": [
     {
+      "type": "virtualbox-iso",
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -39,15 +40,13 @@
       "iso_url": "{{ user `mirror` }}/{{ user `mirror_directory` }}/{{ user `iso_name` }}",
       "output_directory": "{{ user `build_directory` }}/packer-{{ user `template` }}-virtualbox",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_username": "vagrant",
       "ssh_timeout": "1h",
-      "type": "virtualbox-iso",
       "memory": "{{ user `memory` }}",
       "cpus": "{{ user `cpus` }}",
       "virtualbox_version_file": ".vbox_version",
-      "vm_name": "{{ user `template` }}"
     },
     {
       "type": "vmware-iso",
@@ -94,13 +93,13 @@
       "ssh_username": "vagrant",
       "ssh_timeout": "1h",
       "tools_upload_flavor": "linux",
-      "vm_name": "{{ user `template` }}",
+      "vm_name": "{{ user `template` }}-{{ user `build_timestamp` }}",
+      "version": 12,
       "memory": "{{ user `memory` }}",
       "cpus": "{{ user `cpus` }}",
       "cores": "{{ user `cores` }}",
       "vmx_data": {
-        "ethernet0.pciSlotNumber":  "32",
-        "virtualHW.version":        12
+        "ethernet0.pciSlotNumber": "32"
       },
       "vmx_remove_ethernet_interfaces": true
     }
@@ -128,7 +127,7 @@
     [
       {
         "type":                       "vsphere",
-        "vm_name":                    "{{ user `template` }}",
+        "vm_name":                    "{{ user `template` }}-{{ user `build_timestamp` }}",
         "datacenter":                 "{{ user `vcenter_datacenter` }}",
         "cluster":                    "{{ user `vcenter_cluster` }}",
         "datastore":                  "{{ user `vcenter_datastore` }}",
@@ -192,13 +191,13 @@
     "box_basename": "ubuntu-18.04",
     "build_directory": "{{ template_dir }}/../../builds",
     "build_timestamp": "{{ isotime \"20060102150405\" }}",
-    "template": "ubuntu-18.04-amd64-{{ build_timestamp }}",
+    "template": "ubuntu-18.04-amd64",
     "http_directory": "{{ template_dir }}/http",
     "memory": "4096",
     "cpus": "1",
     "cores": "1",
     "disk_size": "65536",
-    "disk_type_id": "thin",
+    "disk_type_id": "1",
     "headless": "",
     "http_proxy": "{{ env `http_proxy` }}",
     "https_proxy": "{{ env `https_proxy` }}",
