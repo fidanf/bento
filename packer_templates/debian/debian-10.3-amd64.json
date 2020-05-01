@@ -167,6 +167,6 @@
     "preseed_path":                 "debian-10/preseed.cfg",
     "vagrant_cloud_token":          "{{ env `vagrantcloud_token` }}",
     "vagrant_version":              "1.0.{{ timestamp }}",
-    "vagrant_version_description":  "Debian version: 10.3.0. <br> VirtualBox version: 6.1.4. <br> Disk size 65GB."
+    "vagrant_version_description":  "Debian version: 10.3.0. <br> VirtualBox version: 6.1.6. <br> Disk size 65GB."
   }
 }
