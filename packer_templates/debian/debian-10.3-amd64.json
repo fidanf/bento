@@ -64,7 +64,7 @@
       ],
       "boot_wait": "10s",
       "disk_size": "{{ user `disk_size` }}",
-      "guest_os_type": "debian10-64",
+      "guest_os_type": "debian8-64",
       "headless": "{{ user `headless` }}",
       "http_directory": "{{user `http_directory` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
@@ -82,8 +82,8 @@
       "cpus": "{{ user `cpus` }}",
       "cores": "{{ user `cores` }}",
       "vmx_data": {
-        "cpuid.coresPerSocket": "1",
-        "ethernet0.pciSlotNumber": "32"
+        "ethernet0.pciSlotNumber": "32",
+        "virtualHW.version":        12
       },
       "vmx_remove_ethernet_interfaces": true
     }
