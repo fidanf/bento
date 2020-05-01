@@ -39,8 +39,8 @@
       "iso_url": "{{user `mirror`}}/{{user `mirror_directory`}}/{{user `iso_name`}}",
       "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-virtualbox",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "ssh_password": "vagrant",
       "ssh_port": 22,
+      "ssh_password": "vagrant",
       "ssh_username": "vagrant",
       "ssh_timeout": "10000s",
       "type": "virtualbox-iso",
@@ -167,36 +167,6 @@
           "virtualbox-iso"
         ]
       }
-    ],
-    [
-      {
-        "type":                       "vsphere",
-        "vm_name":                    "{{ user `template` }}-{{ timestamp }}",
-        "datacenter":                 "{{ user `vcenter_datacenter` }}",
-        "cluster":                    "{{ user `vcenter_cluster` }}",
-        "datastore":                  "{{ user `vcenter_datastore` }}",
-        "host":                       "{{ user `vcenter_host` }}",
-        "username":                   "{{ user `vcenter_username` }}",
-        "password":                   "{{ user `vcenter_password` }}",
-        "disk_mode":                  "{{ user `disk_mode` }}",
-        "vm_folder":                  "{{ user `vcenter_vm_folder` }}",
-        "keep_input_artifact":        true,
-        "only": [
-          "vmware-iso"
-        ]
-      },
-      {
-        "type":                       "vsphere-template",
-        "datacenter":                 "{{ user `vcenter_datacenter` }}",
-        "host":                       "{{ user `vcenter_host` }}",
-        "username":                   "{{ user `vcenter_username` }}",
-        "password":                   "{{ user `vcenter_password` }}",
-        "folder":                     "{{ user `vcenter_template_folder` }}",
-        "insecure":                   true,
-        "only": [
-          "vmware-iso"
-        ]
-      }
     ]
   ],
   "provisioners": [
@@ -231,7 +201,7 @@
     }
   ],
   "variables": {
-    "ansible_pubkey_src": "{{ template_dir }}/ssh/ansible_beta.pub",
+    "ansible_pubkey_src": "{{ template_dir }}/ssh/id_rsa.pub",
     "box_basename": "ubuntu-19.10",
     "build_directory": "{{ template_dir }}/../../builds",
     "http_directory": "{{template_dir}}/http",
@@ -255,6 +225,6 @@
     "template": "ubuntu-19.10-amd64",
     "vagrant_cloud_token": "{{ env `vagrantcloud_token` }}",
     "vagrant_version": "1.0.{{ timestamp }}",
-    "vagrant_version_description": "Debian version: 10.3.0. <br> VirtualBox version: 6.1.4. <br> Disk size 65GB."
+    "vagrant_version_description": "Ubuntu version: 19.10.1. <br> VirtualBox version: 6.1.6. <br> Disk size 65GB."
   }
 }
