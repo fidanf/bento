@@ -112,10 +112,10 @@
       },
       {
         "type":                       "vagrant-cloud",
-        "box_tag":                    "rgsystems/bionic64",
         "access_token":               "{{ user `vagrant_cloud_token` }}",
-        "version":                    "{{ user `vagrant_version` }}",
-        "version_description":        "{{ user `vagrant_version_description` }}",
+        "box_tag":                    "{{ user `vagrant_cloud_repo` }}",
+        "version":                    "{{ user `box_version` }}",
+        "version_description":        "{{ user `box_description` }}",
         "only": [
           "virtualbox-iso"
         ]
@@ -157,8 +157,6 @@
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
-    "hyperv_generation": "2",
-    "hyperv_switch": "{{env `hyperv_switch`}}",
     "guest_additions_url": "",
     "iso_checksum": "36f15879bd9dfd061cd588620a164a82972663fdd148cce1f70d57d314c21b73",
     "iso_checksum_type": "sha256",
@@ -171,7 +169,8 @@
     "preseed_path": "preseed.cfg",
     "template": "ubuntu-20.04-amd64",
     "vagrant_cloud_token":          "{{ env `vagrantcloud_token` }}",
-    "vagrant_version":              "1.0.{{ timestamp }}",
-    "vagrant_version_description":  "Ubuntu version: 20.04. <br> VirtualBox version: 6.1.6. <br> Disk size 65GB."
+    "vagrant_cloud_repo":           "rgsystems/focal64",
+    "box_version":                  "1.0.{{ timestamp }}",
+    "box_description":              "Ubuntu version: 20.04. <br> VirtualBox version: 6.1.6. <br> Disk size 65GB."
   }
 }
