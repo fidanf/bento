@@ -127,11 +127,6 @@
   ],
   "provisioners": [
     {
-      "type":         "file",
-      "source":       "{{ user `ansible_pubkey_src` }}",
-      "destination":  "/home/vagrant/id_rsa.pub"
-    },
-    {
       "type": "shell",
       "environment_vars": [
         "HOME_DIR=/home/vagrant",
@@ -148,7 +143,6 @@
         "{{ template_dir }}/scripts/networking.sh",
         "{{ template_dir }}/scripts/sudoers.sh",
         "{{ template_dir }}/../_common/vagrant.sh",
-        "{{ template_dir }}/../_common/ansible.sh",
         "{{ template_dir }}/../_common/virtualbox.sh",
         "{{ template_dir }}/../_common/open-vm-tools.sh",
         "{{ template_dir }}/scripts/cleanup.sh",
@@ -159,7 +153,6 @@
   "variables": {
     "name":                         "ubuntu-18.04",
     "preseed_path":                 "preseed.cfg",
-    "ansible_pubkey_src":           "{{ env `home` }}/.ssh/id_rsa.pub",
     "box_basename":                 "ubuntu-18.04",
     "build_directory":              "{{ template_dir }}/../../builds",
     "build_timestamp":              "{{ isotime \"20060102150405\" }}",
@@ -182,6 +175,6 @@
     "mirror_directory":             "ubuntu/releases/18.04.4/release",
     "vagrant_cloud_token":          "{{ env `vagrantcloud_token` }}",
     "vagrant_version":              "1.0.{{ timestamp }}",
-    "vagrant_version_description":  "Ubuntu version: 18.04. <br> VirtualBox version: 6.1.6. <br> Disk size 65GB."
+    "vagrant_version_description":  "Ubuntu version: 18.04. <br> VirtualBox version: 6.1.8. <br> Disk size 65GB."
   }
 }
