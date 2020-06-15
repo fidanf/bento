@@ -6,7 +6,6 @@
       "boot_key_interval":      "10ms",
       "boot_keygroup_interval": "10ms",
       "iso_checksum":           "{{ user `iso_checksum` }}",
-      "iso_checksum_type":      "{{ user `iso_checksum_type` }}",
       "iso_url":                "{{ user `mirror` }}/{{ user `mirror_directory` }}/{{ user `iso_name` }}",
       "http_directory":         "http",
       "boot_command": [
@@ -110,7 +109,7 @@
   "variables": {
     "ansible_pubkey_src": "{{ env `home` }}/.ssh/id_rsa.pub",
     "build_timestamp":    "{{ isotime \"20060102150405\" }}",
-    "vm_name":            "debian-10.3-{{ user `build_timestamp` }}",
+    "vm_name":            "debian-10.4-{{ user `build_timestamp` }}",
     "cpus":               "1",
     "cores":              "1",
     "memory":             "1024",
@@ -122,11 +121,10 @@
     "gateway":            "192.168.1.1",
     "nameservers":        "192.168.1.1",
     "domain":             "",
-    "iso_checksum":       "6a901b5abe43d88b39d627e1339d15507cc38f980036b928f835e0f0e957d3d8",
-    "iso_checksum_type":  "sha256",
-    "iso_name":           "debian-10.3.0-amd64-netinst.iso",
+    "iso_checksum":       "sha256:6a901b5abe43d88b39d627e1339d15507cc38f980036b928f835e0f0e957d3d8",
+    "iso_name":           "debian-10.4.0-amd64-netinst.iso",
     "mirror":             "http://cdimage.debian.org/cdimage/release",
-    "mirror_directory":   "10.3.0/amd64/iso-cd",
+    "mirror_directory":   "10.4.0/amd64/iso-cd",
     "preseed_path":       "debian-10/preseed.cfg"
   }
 }

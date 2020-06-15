@@ -7,7 +7,6 @@
         "boot_keygroup_interval": "10ms",
         "http_directory":         "{{ user `http_directory` }}",
         "iso_checksum":           "{{ user `iso_checksum` }}",
-        "iso_checksum_type":      "{{ user `iso_checksum_type` }}",
         "iso_url":                "{{ user `mirror` }}/{{ user `mirror_directory` }}/{{ user `iso_name` }}",
         "boot_command": [
           "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
@@ -115,8 +114,7 @@
         "disk_size":            "65536",
         "disk_type_id":         "thin",
         "network":              "VM Network",
-        "iso_checksum":         "e2ecdace33c939527cbc9e8d23576381c493b071107207d2040af72595f8990b",
-        "iso_checksum_type":    "sha256",
+        "iso_checksum":         "sha256:e2ecdace33c939527cbc9e8d23576381c493b071107207d2040af72595f8990b",
         "iso_name":             "ubuntu-18.04.4-server-amd64.iso",
         "mirror":               "http://cdimage.ubuntu.com",
         "mirror_directory":     "ubuntu/releases/18.04.4/release",

@@ -36,7 +36,6 @@
       "headless": "{{ user `headless` }}",
       "http_directory": "{{ user `http_directory` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{ user `mirror` }}/{{ user `mirror_directory` }}/{{ user `iso_name` }}",
       "output_directory": "{{ user `build_directory` }}/packer-{{ user `template` }}-virtualbox",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
@@ -82,7 +81,6 @@
       "headless": "{{ user `headless` }}",
       "http_directory": "{{ user `http_directory` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
-      "iso_checksum_type": "{{ user `iso_checksum_type` }}",
       "iso_url": "{{ user `mirror` }}/{{ user `mirror_directory` }}/{{ user `iso_name` }}",
       "output_directory": "{{ user `build_directory` }}/packer-{{ user `template` }}-vmware",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
@@ -160,8 +158,7 @@
     "https_proxy": "{{ env `https_proxy` }}",
     "no_proxy": "{{ env `no_proxy` }}",
     "guest_additions_url": "",
-    "iso_checksum": "36f15879bd9dfd061cd588620a164a82972663fdd148cce1f70d57d314c21b73",
-    "iso_checksum_type": "sha256",
+    "iso_checksum": "sha256:36f15879bd9dfd061cd588620a164a82972663fdd148cce1f70d57d314c21b73",
     "iso_name": "ubuntu-20.04-legacy-server-amd64.iso",
     "mirror": "http://cdimage.ubuntu.com",
     "mirror_directory": "ubuntu-legacy-server/releases/focal/release",
@@ -170,6 +167,6 @@
     "vagrant_cloud_token":          "{{ env `vagrantcloud_token` }}",
     "vagrant_cloud_repo":           "rgsystems/focal64",
     "box_version":                  "1.0.{{ timestamp }}",
-    "box_description":              "Ubuntu version: 20.04. <br> VirtualBox version: 6.1.8. <br> Disk size 65GB."
+    "box_description":              "Ubuntu version: 20.04. <br> VirtualBox version: 6.1.10. <br> Disk size 65GB."
   }
 }
