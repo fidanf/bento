@@ -49,7 +49,7 @@ class NormalizeRunner
     raise "[#{template}] Error fixing, exited #{$CHILD_STATUS}" if $CHILD_STATUS.exitstatus != 0
 
     # preserve ampersands in shell commands,
-    # see: https://github.com/mitchellh/packer/issues/784
+    # see: https://github.com/hashicorp/packer/issues/784
     output.gsub!("\\u0026", "&")
     File.open(file, "wb") { |dest| dest.write(output) }
     fixed_checksum = checksum(file)
@@ -72,7 +72,7 @@ class NormalizeRunner
   def validate(template)
     for_packer_run_with(template) do |md_file, var_file|
       cmd = packer_validate_cmd(template, var_file.path)
-      banner("[#{template}] Validating: '#{cmd.join(' ')}'")
+      banner("[#{template}] Validating: '#{cmd.join(" ")}'")
       if debug
         banner("[#{template}] DEBUG: var_file(#{var_file.path}) is:")
         puts IO.read(var_file.path)
