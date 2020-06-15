@@ -113,10 +113,10 @@
       },
       {
         "type":                       "vagrant-cloud",
-        "box_tag":                    "rgsystems/bionic64",
         "access_token":               "{{ user `vagrant_cloud_token` }}",
-        "version":                    "{{ user `vagrant_version` }}",
-        "version_description":        "{{ user `vagrant_version_description` }}",
+        "box_tag":                    "{{ user `vagrant_cloud_repo` }}",
+        "version":                    "{{ user `box_version` }}",
+        "version_description":        "{{ user `box_description` }}",
         "only": [
           "virtualbox-iso"
         ]
@@ -171,7 +171,8 @@
     "mirror":                       "http://cdimage.ubuntu.com",
     "mirror_directory":             "ubuntu/releases/18.04.4/release",
     "vagrant_cloud_token":          "{{ env `vagrantcloud_token` }}",
-    "vagrant_version":              "1.0.{{ timestamp }}",
-    "vagrant_version_description":  "Ubuntu version: 18.04. <br> VirtualBox version: 6.1.10. <br> Disk size 65GB."
+    "vagrant_cloud_repo":           "rgsystems/bionic64",
+    "box_version":                  "1.0.{{ timestamp }}",
+    "box_description":              "Ubuntu version: 18.04. <br> VirtualBox version: 6.1.10. <br> Disk size 65GB."
   }
 }
