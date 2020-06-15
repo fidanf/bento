@@ -149,7 +149,7 @@
     "https_proxy":                  "{{ env `https_proxy` }}",
     "no_proxy":                     "{{ env `no_proxy` }}",
     "guest_additions_url":          "",
-    "iso_checksum":                 "sha256:6a901b5abe43d88b39d627e1339d15507cc38f980036b928f835e0f0e957d3d8",
+    "iso_checksum":                 "sha256:ab3763d553330e90869487a6843c88f1d4aa199333ff16b653e60e59ac1fc60b",
     "iso_name":                     "debian-10.4.0-amd64-netinst.iso",
     "mirror":                       "http://cdimage.debian.org/cdimage/release",
     "mirror_directory":             "10.4.0/amd64/iso-cd",
