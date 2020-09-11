@@ -11,7 +11,7 @@
       "boot_command": [
         "<esc><wait>",
         "install <wait>",
-        " preseed/url=https://gist.githubusercontent.com/fidanf/b84097314ffe6d627fef3083801199c0/raw/6d21e04a96f5ec24cb97bc5e1923015db5409ab3/preseed.cfg <wait>",
+        " preseed/url={{ user `preseed_url` }} <wait>",
         "debian-installer=en_US.UTF-8 <wait>",
         "auto <wait>",
         "locale=en_US.UTF-8 <wait>",
@@ -125,6 +125,7 @@
     "iso_name":           "debian-10.5.0-amd64-netinst.iso",
     "mirror":             "http://cdimage.debian.org/cdimage/release",
     "mirror_directory":   "10.5.0/amd64/iso-cd",
-    "preseed_path":       "debian-10/preseed.cfg"
+    "preseed_path":       "debian-10/preseed.cfg",
+    "preseed_url":        "https://gist.githubusercontent.com/fidanf/b84097314ffe6d627fef3083801199c0/raw/6d21e04a96f5ec24cb97bc5e1923015db5409ab3/preseed.cfg"
   }
 }
