@@ -134,7 +134,7 @@
     }
   ],
   "variables": {
-    "box_basename":                 "debian-10.5",
+    "box_basename":                 "debian-10.7",
     "build_directory":              "{{ template_dir }}/../../builds",
     "build_timestamp":              "{{ isotime \"20060102150405\" }}",
     "template":                     "debian-10.4-amd64",
@@ -150,13 +150,13 @@
     "no_proxy":                     "{{ env `no_proxy` }}",
     "guest_additions_url":          "",
     "iso_checksum":                 "sha256:93863e17ac24eeaa347dfb91dddac654f214c189e0379d7c28664a306e0301e7",
-    "iso_name":                     "debian-10.5.0-amd64-netinst.iso",
+    "iso_name":                     "debian-10.7.0-amd64-netinst.iso",
     "mirror":                       "http://cdimage.debian.org/cdimage/release",
-    "mirror_directory":             "10.5.0/amd64/iso-cd",
+    "mirror_directory":             "10.7.0/amd64/iso-cd",
     "preseed_path":                 "debian-10/preseed.cfg",
     "vagrant_cloud_token":          "{{ env `vagrantcloud_token` }}",
     "vagrant_cloud_repo":           "rgsystems/buster64",
     "box_version":                  "1.0.{{ timestamp }}",
-    "box_description":              "Debian version: 10.5. <br> VirtualBox version: 6.1.12. <br> Disk size 65GB."
+    "box_description":              "Debian version: 10.7. <br> VirtualBox version: 6.1.12. <br> Disk size 65GB."
   }
 }

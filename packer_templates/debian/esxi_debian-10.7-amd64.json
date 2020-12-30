@@ -109,7 +109,7 @@
   "variables": {
     "ansible_pubkey":     "{{ user `ansible_pubkey` }}",
     "build_timestamp":    "{{ isotime \"20060102150405\" }}",
-    "vm_name":            "debian-10.5-{{ user `build_timestamp` }}",
+    "vm_name":            "debian-10.7-{{ user `build_timestamp` }}",
     "cpus":               "1",
     "cores":              "1",
     "memory":             "1024",
@@ -122,9 +122,9 @@
     "nameservers":        "192.168.1.1",
     "domain":             "",
     "iso_checksum":       "sha256:93863e17ac24eeaa347dfb91dddac654f214c189e0379d7c28664a306e0301e7",
-    "iso_name":           "debian-10.5.0-amd64-netinst.iso",
+    "iso_name":           "debian-10.7.0-amd64-netinst.iso",
     "mirror":             "http://cdimage.debian.org/cdimage/release",
-    "mirror_directory":   "10.5.0/amd64/iso-cd",
+    "mirror_directory":   "10.7.0/amd64/iso-cd",
     "preseed_path":       "debian-10/preseed.cfg",
     "preseed_url":        "https://gist.githubusercontent.com/fidanf/b84097314ffe6d627fef3083801199c0/raw/6d21e04a96f5ec24cb97bc5e1923015db5409ab3/preseed.cfg"
   }
