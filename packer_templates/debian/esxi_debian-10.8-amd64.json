@@ -30,7 +30,7 @@
       "insecure_connection":  true,
       "disk_size":            "{{ user `disk_size` }}",
       "disk_type_id":         "{{ user `disk_type_id` }}",
-      "guest_os_type":        "debian8-64",
+      "guest_os_type":        "debian10-64",
       "keep_registered":      true,
       "skip_export":          true,
       "vnc_disable_password": true,
