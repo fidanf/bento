@@ -30,7 +30,6 @@
       "insecure_connection":  true,
       "disk_size":            "{{ user `disk_size` }}",
       "disk_type_id":         "{{ user `disk_type_id` }}",
-      "guest_os_type":        "debian10-64",
       "keep_registered":      true,
       "skip_export":          true,
       "vnc_disable_password": true,
@@ -38,7 +37,7 @@
       "ssh_password":         "vagrant",
       "ssh_port":             22,
       "ssh_timeout":          "1h",
-      "tools_upload_flavor":  "linux",
+      "tools_upload_flavor":  "",
       "memory":               "{{ user `memory` }}",
       "cpus":                 "{{ user `cpus` }}",
       "cores":                "{{ user `cores` }}",
@@ -52,7 +51,8 @@
       "shutdown_command":     "echo 'vagrant' | sudo -S /sbin/shutdown -hP now",
       "vmx_data": {
         "ethernet0.pciSlotNumber":  "32",
-        "ethernet0.networkName":    "{{ user `network` }}"
+        "ethernet0.networkName":    "{{ user `network` }}",
+        "guestOS":                  "debian10-64"
       }
     }
   ],
@@ -106,7 +106,7 @@
     "cpus":               "1",
     "cores":              "1",
     "memory":             "1024",
-    "disk_size":          "38147",
+    "disk_size":          "40000",
     "disk_type_id":       "thin",
     "network":            "{{ user `network` }}",
     "domain":             "",
