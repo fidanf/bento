@@ -34,6 +34,8 @@
           " -- <wait>",
           "<enter><wait>"
         ],
+        "vnc_over_websocket":         true,
+        "insecure_connection":        true,
         "disk_size":                  "{{ user `disk_size` }}",
         "disk_type_id":               "{{ user `disk_type_id` }}",
         "guest_os_type":              "ubuntu-64",
