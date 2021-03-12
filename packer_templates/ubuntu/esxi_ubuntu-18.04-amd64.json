@@ -1,127 +1,127 @@
 {
-    "builders": [
-      {
-        "type":                   "vmware-iso",
-        "boot_wait":              "5s",
-        "boot_key_interval":      "10ms",
-        "boot_keygroup_interval": "10ms",
-        "http_directory":         "{{ user `http_directory` }}",
-        "iso_checksum":           "{{ user `iso_checksum` }}",
-        "iso_url":                "{{ user `mirror` }}/{{ user `mirror_directory` }}/{{ user `iso_name` }}",
-        "boot_command": [
-          "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-          "/install/vmlinuz<wait>",
-          " auto<wait>",
-          " console-setup/ask_detect=false<wait>",
-          " console-setup/layoutcode=us<wait>",
-          " console-setup/modelcode=pc105<wait>",
-          " debconf/frontend=noninteractive<wait>",
-          " debian-installer=en_US.UTF-8<wait>",
-          " fb=false<wait>",
-          " initrd=/install/initrd.gz<wait>",
-          " kbd-chooser/method=us<wait>",
-          " keyboard-configuration/layout=USA<wait>",
-          " keyboard-configuration/variant=USA<wait>",
-          " locale=en_US.UTF-8<wait>",
-          " netcfg/get_domain=vm<wait>",
-          " netcfg/get_hostname=vagrant<wait>",
-          " grub-installer/bootdev=/dev/sda<wait>",
-          " noapic<wait>",
-          " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `preseed_path`}}<wait>",
-          " -- <wait>",
-          "<enter><wait>"
-        ],
-        "vnc_over_websocket":         true,
-        "insecure_connection":        true,
-        "disk_size":                  "{{ user `disk_size` }}",
-        "disk_type_id":               "{{ user `disk_type_id` }}",
-        "guest_os_type":              "ubuntu-64",
-        "keep_registered":            true,
-        "skip_export":                true,
-        "vnc_disable_password":       true,
-        "ssh_username":               "vagrant",
-        "ssh_password":               "vagrant",
-        "ssh_port":                   22,
-        "ssh_timeout":                "1h",
-        "tools_upload_flavor":        "linux",
-        "memory":                     "{{ user `memory` }}",
-        "cpus":                       "{{ user `cpus` }}",
-        "cores":                      "{{ user `cores` }}",
-        "version":                    12,
-        "vm_name":                    "{{ user `vm_name` }}",
-        "remote_type":                "esx5",
-        "remote_host":                "{{ user `esxi_host` }}",
-        "remote_datastore":           "{{ user `esxi_datastore` }}",
-        "remote_username":            "{{ user `esxi_username` }}",
-        "remote_password":            "{{ user `esxi_password` }}",
-        "shutdown_command":           "echo 'vagrant' | sudo -S /sbin/shutdown -hP now",
-        "vmx_data": {
-          "ethernet0.pciSlotNumber":  "32",
-          "ethernet0.networkName":    "{{ user `network` }}"
-        }
+  "builders": [
+    {
+      "type":                   "vmware-iso",
+      "boot_wait":              "5s",
+      "boot_key_interval":      "10ms",
+      "boot_keygroup_interval": "10ms",
+      "http_directory":         "{{ user `http_directory` }}",
+      "iso_checksum":           "{{ user `iso_checksum` }}",
+      "iso_url":                "{{ user `mirror` }}/{{ user `mirror_directory` }}/{{ user `iso_name` }}",
+      "boot_command": [
+        "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz<wait>",
+        " auto<wait>",
+        " console-setup/ask_detect=false<wait>",
+        " console-setup/layoutcode=us<wait>",
+        " console-setup/modelcode=pc105<wait>",
+        " debconf/frontend=noninteractive<wait>",
+        " debian-installer=en_US.UTF-8<wait>",
+        " fb=false<wait>",
+        " initrd=/install/initrd.gz<wait>",
+        " kbd-chooser/method=us<wait>",
+        " keyboard-configuration/layout=USA<wait>",
+        " keyboard-configuration/variant=USA<wait>",
+        " locale=en_US.UTF-8<wait>",
+        " netcfg/get_domain=vm<wait>",
+        " netcfg/get_hostname=vagrant<wait>",
+        " grub-installer/bootdev=/dev/sda<wait>",
+        " noapic<wait>",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `preseed_path`}}<wait>",
+        " -- <wait>",
+        "<enter><wait>"
+      ],
+      "vnc_over_websocket":         true,
+      "insecure_connection":        true,
+      "disk_size":                  "{{ user `disk_size` }}",
+      "disk_type_id":               "{{ user `disk_type_id` }}",
+      "guest_os_type":              "ubuntu-64",
+      "keep_registered":            true,
+      "skip_export":                true,
+      "vnc_disable_password":       true,
+      "ssh_username":               "vagrant",
+      "ssh_password":               "vagrant",
+      "ssh_port":                   22,
+      "ssh_timeout":                "1h",
+      "tools_upload_flavor":        "linux",
+      "memory":                     "{{ user `memory` }}",
+      "cpus":                       "{{ user `cpus` }}",
+      "cores":                      "{{ user `cores` }}",
+      "version":                    12,
+      "vm_name":                    "{{ user `vm_name` }}",
+      "remote_type":                "esx5",
+      "remote_host":                "{{ user `esxi_host` }}",
+      "remote_datastore":           "{{ user `esxi_datastore` }}",
+      "remote_username":            "{{ user `esxi_username` }}",
+      "remote_password":            "{{ user `esxi_password` }}",
+      "shutdown_command":           "echo 'vagrant' | sudo -S /sbin/shutdown -hP now",
+      "vmx_data": {
+        "ethernet0.pciSlotNumber":  "32",
+        "ethernet0.networkName":    "{{ user `network` }}"
       }
-    ],
-    "post-processors": [
-      {
-        "type":                 "vsphere-template",
-        "datacenter":           "{{ user `vcenter_datacenter` }}",
-        "host":                 "{{ user `vcenter_host` }}",
-        "username":             "{{ user `vcenter_username` }}",
-        "password":             "{{ user `vcenter_password` }}",
-        "folder":               "{{ user `vcenter_template_folder` }}",
-        "insecure":             true,
-        "reregister_vm":        false,
-        "only": [
-          "vmware-iso"
-        ]
-      }
-    ],
-    "provisioners": [
-      {
-        "type":         "file",
-        "source":       "{{ user `ansible_pubkey_src` }}",
-        "destination":  "/home/vagrant/id_rsa.pub"
-      },
-      {
-        "environment_vars": [
-          "HOME_DIR=/home/vagrant"
-        ],
-        "type": "shell",
-        "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
-        "expect_disconnect": true,
-        "scripts": [
-          "{{ template_dir }}/scripts/update.sh",
-          "{{ template_dir }}/../_common/motd.sh",
-          "{{ template_dir }}/../_common/sshd.sh",
-          "{{ template_dir }}/scripts/networking.sh",
-          "{{ template_dir }}/scripts/sudoers.sh",
-          "{{ template_dir }}/../_common/vagrant.sh",
-          "{{ template_dir }}/../_common/ansible.sh",
-          "{{ template_dir }}/../_common/open-vm-tools.sh",
-          "{{ template_dir }}/scripts/cleanup.sh",
-          "{{ template_dir }}/../_common/minimize.sh"
-        ]
-      }
-    ],
-    "variables": {
-        "ansible_pubkey_src":   "{{ env `home` }}/.ssh/id_rsa.pub",
-        "build_timestamp":      "{{ isotime \"20060102150405\" }}",
-        "vm_name":              "ubuntu-18.04-{{ user `build_timestamp` }}",
-        "cpus":                 "1",
-        "cores":                "1",
-        "memory":               "1024",
-        "disk_size":            "65536",
-        "disk_type_id":         "thin",
-        "network":              "VM Network",
-        "iso_checksum":         "sha256:8c5fc24894394035402f66f3824beb7234b757dd2b5531379cb310cedfdf0996",
-        "iso_name":             "ubuntu-18.04.5-server-amd64.iso",
-        "mirror":               "http://cdimage.ubuntu.com",
-        "mirror_directory":     "ubuntu/releases/18.04.5/release",
-        "name":                 "ubuntu-18.04",
-        "preseed_path":         "preseed.cfg",
-        "http_directory":       "{{ template_dir }}/http"
     }
+  ],
+  "post-processors": [
+    {
+      "type":                 "vsphere-template",
+      "datacenter":           "{{ user `vcenter_datacenter` }}",
+      "host":                 "{{ user `vcenter_host` }}",
+      "username":             "{{ user `vcenter_username` }}",
+      "password":             "{{ user `vcenter_password` }}",
+      "folder":               "{{ user `vcenter_template_folder` }}",
+      "insecure":             true,
+      "reregister_vm":        false,
+      "only": [
+        "vmware-iso"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type":         "file",
+      "source":       "{{ user `ansible_pubkey_src` }}",
+      "destination":  "/home/vagrant/id_rsa.pub"
+    },
+    {
+      "environment_vars": [
+        "HOME_DIR=/home/vagrant"
+      ],
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
+      "expect_disconnect": true,
+      "scripts": [
+        "{{ template_dir }}/scripts/update.sh",
+        "{{ template_dir }}/../_common/motd.sh",
+        "{{ template_dir }}/../_common/sshd.sh",
+        "{{ template_dir }}/scripts/networking.sh",
+        "{{ template_dir }}/scripts/sudoers.sh",
+        "{{ template_dir }}/../_common/vagrant.sh",
+        "{{ template_dir }}/../_common/ansible.sh",
+        "{{ template_dir }}/../_common/open-vm-tools.sh",
+        "{{ template_dir }}/scripts/cleanup.sh",
+        "{{ template_dir }}/../_common/minimize.sh"
+      ]
+    }
+  ],
+  "variables": {
+      "ansible_pubkey_src":   "{{ env `home` }}/.ssh/id_rsa.pub",
+      "build_timestamp":      "{{ isotime \"20060102150405\" }}",
+      "vm_name":              "ubuntu-18.04-{{ user `build_timestamp` }}",
+      "cpus":                 "1",
+      "cores":                "1",
+      "memory":               "1024",
+      "disk_size":            "65536",
+      "disk_type_id":         "thin",
+      "network":              "VM Network",
+      "iso_checksum":         "sha256:8c5fc24894394035402f66f3824beb7234b757dd2b5531379cb310cedfdf0996",
+      "iso_name":             "ubuntu-18.04.5-server-amd64.iso",
+      "mirror":               "http://cdimage.ubuntu.com",
+      "mirror_directory":     "ubuntu/releases/18.04.5/release",
+      "name":                 "ubuntu-18.04",
+      "preseed_path":         "preseed.cfg",
+      "http_directory":       "{{ template_dir }}/http"
   }
+}
